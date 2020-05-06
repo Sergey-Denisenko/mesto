@@ -1,0 +1,33 @@
+@import url(../vendor/normalize.css);
+
+.page {
+  min-width: 300px;
+  max-width: 1200px;
+  position: relative;
+  margin: auto;
+  background-color: #000;
+  border: 1px solid red;
+}
+
+.header {
+  margin: 45px 199px ;
+  border: 1px solid yellow;
+  border-bottom: 1px solid #545454;
+  padding: 0;
+}
+
+.header__logo {
+
+  width: 142.01px;
+  height: 33.4px;
+  margin: 0px 0px 40.6px;
+}
+
+/* .header__line {
+  color: #545454;
+
+  opacity: .7;
+
+
+} */
+
