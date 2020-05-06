@@ -10,24 +10,28 @@
 }
 
 .header {
-  margin: 45px 199px ;
+  /* margin: 45px 199px ; */
+  margin: 45px 16.583% ;
   border: 1px solid yellow;
-  border-bottom: 1px solid #545454;
-  padding: 0;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);;
+}
+
+@media all and (min-width: 300px) and (max-width: 500px) {
+  .header {
+    margin: 28px 0px 0px ;
+  }
 }
 
 .header__logo {
-
   width: 142.01px;
   height: 33.4px;
   margin: 0px 0px 40.6px;
 }
 
-/* .header__line {
-  color: #545454;
-
-  opacity: .7;
-
-
-} */
-
+@media all and (min-width: 300px) and (max-width: 500px) {
+  .header__logo {
+  width: 103.74px;
+  height: 24.4px;
+  margin: 0px 0px 31.6px 27px;
+  }
+}
