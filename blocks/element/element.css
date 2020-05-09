@@ -1,0 +1,11 @@
+@import url(./__image/__image.css);
+@import url(./__info/__info.css);
+@import url(./__title/__title.css);
+@import url(./__like/__like.css);
+
+.element {
+  width: 282px;
+  height: 361px;
+  margin: auto;
+  display: grid;
+}

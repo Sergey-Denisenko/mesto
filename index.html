@@ -12,17 +12,15 @@
 
     <header class="header">
       <img class="header__logo" src='./images/Vector_white.svg'>
-      <!-- <hr class="header__line"> -->
     </header>
 
     <main class="content">
-
       <section class="profile">
         <img class="profile__avatar" src="./images/kusto.jpg">
         <div class="profile__data">
           <div class="profile__info">
             <h1 class="profile__title-name">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle-prof">Исследователь океана</p>
+            <p class="profile__subtitle-about">Исследователь океана</p>
           </div>
           <button class="profile__edit-button"></button>
         </div>
@@ -72,49 +70,24 @@
             <div class="element__like"></div>
           </div>
         </div>
-        <!-- <div class="element">
-          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png">
-          <div class="element__info">
-            <h2 class="element__title">Карачаевск</h2>
-            <div class="element__like"></div>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png">
-          <div class="element__info">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like"></div>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png">
-          <div class="element__info">
-            <h2 class="element__title">Домбай</h2>
-            <div class="element__like"></div>
-          </div>
-        </div> -->
       </section>
     </main>
 
     <footer class="footer">
       <p class="footer__info">&copy; 2020 Mesto Russia</p>
     </footer>
+
     <div class="popup">
-        <form action="" class="form">
-          <h3 class="form__title">Редактировать профиль</h3>
-          <fieldset class="form__profile">
-            <input type="text" class="form__name" name="name" placeholder="Жак-Ив Кусто" required>
-            <input type="text" class="form__prof" name="prof" placeholder="Исследователь океана" required>
-            <input type="submit" class="form__submit" value="Сохранить">
-          </fieldset>
-          <div class="form__close-button"></div>
-        </form>
-
+      <form action="" class="popup__container">
+        <h3 class="popup__form-title">Редактировать профиль</h3>
+        <fieldset class="popup__form-profile">
+          <input type="text" class="popup__form-name" name="name" placeholder="Ваше имя" required>
+          <input type="text" class="popup__form-about" name="prof" placeholder="О себе" required>
+          <input type="submit" class="popup__form-submit" value="Сохранить">
+        </fieldset>
+        <div class="popup__form-close-button"></div>
+      </form>
     </div>
-
-
-
-
 
   </div>
 </body>
