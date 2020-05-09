@@ -93,24 +93,28 @@
             <div class="element__like"></div>
           </div>
         </div> -->
-
-        <form action="" class="form">
-          <fieldset class="form__profile">
-            <input type="text" class="form__name">
-            <input type="text" class="form__prof">
-            <input type="text" class="form__submit">
-          </fieldset>
-        </form>
-
-
-
       </section>
-
     </main>
 
     <footer class="footer">
       <p class="footer__info">&copy; 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+        <form action="" class="form">
+          <h3 class="form__title">Редактировать профиль</h3>
+          <fieldset class="form__profile">
+            <input type="text" class="form__name" name="name" placeholder="Жак-Ив Кусто" required>
+            <input type="text" class="form__prof" name="prof" placeholder="Исследователь океана" required>
+            <input type="submit" class="form__submit" value="Сохранить">
+          </fieldset>
+          <div class="form__close-button"></div>
+        </form>
+
+    </div>
+
+
+
+
 
   </div>
 </body>
