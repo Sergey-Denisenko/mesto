@@ -10,5 +10,9 @@
   .profile__data  {
     margin-left: 0px;
     align-items: baseline;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }

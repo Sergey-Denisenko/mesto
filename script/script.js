@@ -8,20 +8,20 @@
 
 
 /* Задаю переменные для получения информации из полей профиля  */
-let profileTitleName = document.querySelector('.profile__title-name');
-let profileSubtitleAbout = document.querySelector('.profile__subtitle-about');
-console.log(profileTitleName.textContent, 'Имя взятое из профиля');
-console.log(profileSubtitleAbout.textContent, 'Профессия взятая из профиля');
+const profileTitleName = document.querySelector('.profile__title-name');
+const profileSubtitleAbout = document.querySelector('.profile__subtitle-about');
+// console.log(profileTitleName.textContent, 'Имя взятое из профиля');
+// console.log(profileSubtitleAbout.textContent, 'Профессия взятая из профиля');
 /* Задаю переменные для получения информации из полей формы по умолчанию  */
 let nameInput = document.querySelector('.popup__form-name');
 let jobInput = document.querySelector('.popup__form-about');
-console.log(nameInput.value, 'Значение Имя в форме по умолчанию1');
-console.log(jobInput.value, 'Значение Профессия в форме по умолчанию1');
+// console.log(nameInput.value, 'Значение Имя в форме по умолчанию1');
+// console.log(jobInput.value, 'Значение Профессия в форме по умолчанию1');
 /* Присваиваю полям формы по умолчанию значения полей профиля  */
 nameInput.value = profileTitleName.textContent;
 jobInput.value = profileSubtitleAbout.textContent;
-console.log(nameInput.value, 'Значение Имя в форме по умолчанию2');
-console.log(jobInput.value, 'Значение Профессия в форме по умолчанию2');
+// console.log(nameInput.value, 'Значение Имя в форме по умолчанию2');
+// console.log(jobInput.value, 'Значение Профессия в форме по умолчанию2');
 
 
 
@@ -29,8 +29,8 @@ console.log(jobInput.value, 'Значение Профессия в форме �
 
 
 
-let editButton = document.querySelector('.profile__edit-button');
-let popupFormCloseButton = document.querySelector('.popup__form-close-button');
+const editButton = document.querySelector('.profile__edit-button');
+const popupFormCloseButton = document.querySelector('.popup__form-close-button');
 const popup = document.querySelector('.popup');
 
 /* Открываю popup по нажатию на кнопку  */
@@ -43,6 +43,7 @@ function openPopup() {
   popupOpened.setAttribute('style', 'display: block')
 }
 
+/* Закрываю popup по нажатию на кнопку  */
 popupFormCloseButton.addEventListener('click', closePopup);
 function closePopup() {
     // console.log('Мы закрыли popup');
@@ -78,8 +79,10 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     profileTitleName.textContent = nameInput.value;
     profileSubtitleAbout.textContent = jobInput.value;
-      // console.log(profileTitleName.textContent, 'Значение Имя');
-      // console.log(profileSubtitleAbout.textContent, 'Значение Профессия');
+    // console.log(profileTitleName.textContent, 'Значение Имя')
+    // console.log(profileSubtitleAbout.textContent, 'Значение Профессия')
+    closePopup();
+    // console.log('Popup закрылся')
 }
 popupFormSubmit.addEventListener('click', formSubmitHandler);
 popupFormSubmit.addEventListener('submit', formSubmitHandler);
