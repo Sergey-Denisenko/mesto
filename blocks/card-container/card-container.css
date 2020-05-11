@@ -1,4 +1,4 @@
-.elements {
+.card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -10,7 +10,7 @@
 }
 
 @media all and (min-width: 300px) and (max-width: 767px) {
-  .elements {
+  .card-container {
     grid-template-columns: repeat(1, 1fr);
     width: calc(100% - 19px - 19px);
     margin: 36px auto;
@@ -18,14 +18,14 @@
 }
 
 @media all and (min-width: 768px) and (max-width: 900px) {
-  .elements {
+  .card-container {
     width: calc(100% - 10% - 10%);
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media all and (min-width: 899px) and (max-width: 1279px) {
-  .elements {
+  .card-container {
     width: calc(100% - 15.547% - 15.547%);
     grid-template-columns: repeat(2, 1fr);
   }

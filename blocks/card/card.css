@@ -3,7 +3,7 @@
 @import url(./__title/__title.css);
 @import url(./__like/__like.css);
 
-.element {
+.card {
   width: 282px;
   height: 361px;
   margin: auto;

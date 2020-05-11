@@ -1,4 +1,4 @@
-.element__like {
+.card__like {
   display: block;
   background-image: url("../../../images/heart_like.svg");
   width: 20.76px;
@@ -9,13 +9,13 @@
   border: none;
 }
 
-.element__like:hover {
+.card__like:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media all and (min-width: 300px) and (max-width: 500px) {
-  .element__like  {
+  .card__like  {
     margin-right: 22.24px;
     margin-top: 31px;
   }
