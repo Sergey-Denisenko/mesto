@@ -6,6 +6,7 @@
   margin-right: 17.24px;
   margin-top: 28px;
   transition: opacity 0.15s linear 0s;
+  border: none;
 }
 
 .element__like:hover {

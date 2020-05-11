@@ -11,6 +11,7 @@
   box-sizing: border-box;
   border-radius: 2px;
   transition: opacity 0.15s linear 0s;
+  padding: 0;
 }
 
 .profile__add-button:hover {

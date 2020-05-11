@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href='./fonts/fonts.css' type='text/css'/>
   <link rel='stylesheet' href='./pages/index.css' type='text/css'/>
   <title>Mesto</title>
 </head>
@@ -22,9 +21,9 @@
             <h1 class="profile__title-name">Жак-Ив Кусто</h1>
             <p class="profile__subtitle-about">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button  type="button"class="profile__add-button"></button>
       </section>
 
       <section class="elements">
@@ -32,42 +31,42 @@
           <img class="element__image" src="./images/kirill-pershin-d153Cq0LxdE-unsplash.jpg" alt="Бештау. Вид на гору в звкате">
           <div class="element__info">
             <h2 class="element__title">Бештау</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/kirill-pershin-MPNhqIsm6IY-unsplash.jpg" alt="ДОмбай. Извилистая дорога">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/kirill-pershin-ASf8LZbQ2oY-unsplash.jpg" alt="Адлер. Лес на склоне">
           <div class="element__info">
             <h2 class="element__title">Адлер</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск. Здание в горах">
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай. Вид на гору">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <div class="element__like"></div>
+            <button type="button" class="element__like"></button>
           </div>
         </div>
       </section>
@@ -83,9 +82,10 @@
         <fieldset class="popup__form-profile">
           <input type="text" class="popup__form-name" name="name" value="Ваше имя" required>
           <input type="text" class="popup__form-about" name="prof" value="О себе" required>
-          <input type="submit" class="popup__form-submit" value="Сохранить">
+          <!-- <input type="submit" class="popup__form-submit" value="Сохранить"> -->
+          <button type="submit" class="popup__form-submit">Сохранить</button>
         </fieldset>
-        <div class="popup__form-close-button"></div>
+        <button type="button" class="popup__form-close-button"></button>
       </form>
     </div>
   </div>

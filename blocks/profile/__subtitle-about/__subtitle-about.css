@@ -4,7 +4,10 @@
   font-weight: normal;
   font-style: normal;
   margin: 16px 0px 0px;
-  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
 }
 
 @media all and (min-width: 300px) and (max-width: 1023px) {
@@ -13,6 +16,6 @@
     line-height: 14px;
     margin: 10px 0px 0px;
     text-align: center;
-    padding-right: 5px;
+    max-width: 230px;
   }
 }
