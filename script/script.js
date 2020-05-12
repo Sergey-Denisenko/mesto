@@ -20,18 +20,14 @@ function openPopup() {
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
     // console.log('Мы открыли popup');
+    /* Добавляю модификатор класса popup*/
   popup.classList.add('popup_opened');
     // console.log(popup.classList);
-  const popupOpened = document.querySelector('.popup_opened');
-  popupOpened.setAttribute('style', 'display: block');
 }
 
 /* Закрываю popup по нажатию на кнопку  */
 function closePopup() {
-    // console.log('Мы закрыли popup');
-  const popupOpened = document.querySelector('.popup_opened');
-    // console.log(popupOpened);
-  popupOpened.removeAttribute('style');
+/* Удаляю модификатор класса popup*/
   popup.classList.remove('popup_opened');
     // console.log(popup.classList);
 }
