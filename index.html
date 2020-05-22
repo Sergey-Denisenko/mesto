@@ -102,28 +102,30 @@
     </div>
 
 <!-- попап для добавления карточки -->
-    <!-- <div class="popup2">
-      <form class="popup__container">
-        <h3 class="popup__form-title">Новое место</h3>
-        <fieldset class="popup__form-profile">
-          <input type="text" class="popup__form-name" name="name" value="Название" required>
-          <input type="text" class="popup__form-about" name="prof" value="Ссылка на картинку" required>
-          <button type="submit" class="popup__form-submit">Сохранить</button>
+    <div class="popup-add-card">
+      <form class="popup-add-card__container">
+        <h3 class="popup-add-card__form-title">Новое место</h3>
+        <fieldset class="popup-add-card__form-profile">
+          <input type="text" class="popup-add-card__form-name" name="name" value="Название" required>
+          <input type="text" class="popup-add-card__form-image-link" name="link" value="Ссылка на картинку" required>
+          <button type="submit" class="popup-add-card__form-submit">Сохранить</button>
         </fieldset>
-        <button type="button" class="popup__form-close-button"></button>
+        <button type="button" class="popup-add-card__form-close-button"></button>
       </form>
-    </div> -->
+    </div>
 
 <!-- контейнер карточки для вставки через JS -->
-    <!-- <div class="card">
-      <img class="card__image" src="" alt="">
-      <div class="card__info">
-        <h2 class="card__title"></h2>
-        <button type="button" class="card__like"></button>
+    <template id='card'>
+      <div class="card">
+        <img class="card__image" src="" alt="">
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like"></button>
+        </div>
+        <button type="button" class="card__trash">
+        </button>
       </div>
-      <button type="button" class="card__trash">
-      </button>
-    </div> -->
+    </template>
 
   </div>
   <script src="./script/script.js"></script>

@@ -11,6 +11,40 @@ const popup = document.querySelector('.popup');
 const popupFormSubmit = document.querySelector('.popup__form-submit');
 
 const profileAddButton = document.querySelector('.profile__add-button');
+const cardTitle = document.querySelector('.card__title'); // Заголовок картинки
+const cardImage = document.querySelector('.card__image'); // Картинка карточки
+const cardLike = document.querySelector('.card__like'); // Значек Like
+const popupAddCard = document.querySelector('.popup-add-card'); // Попап  AddCard
+const popupAddFormCloseButton = document.querySelector('.popup-add-card__form-close-button');
+const AddCardNameInput = document.querySelector('.popup-add-card__form-name');
+const AddCardImageLink = document.querySelector('.popup-add-card__form-image-link');
+
+const initialCards = [
+  {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
 
@@ -34,6 +68,26 @@ function closePopup() {
 }
 
 
+
+function openPopupAddCard() {
+  /* Присваиваю полям формы по умолчанию значения полей профиля  */
+  // AddCardNameInput.value = cardTitle.textContent;
+  // AddCardImageLink.value = cardImage.src;
+    // console.log('Мы открыли popup');
+    /* Добавляю модификатор класса popup*/
+    popupAddCard.classList.add('popup_opened');
+    // console.log(popup.classList);
+}
+
+/* Закрываю popup по нажатию на кнопку  */
+function closePopupAddCard() {
+/* Удаляю модификатор класса popup*/
+popupAddCard.classList.remove('popup_opened');
+    // console.log(popup.classList);
+}
+
+
+
 /*РАБОТА С ФОРМОЙ ОКНА POPUP*/
 
 
@@ -50,9 +104,12 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     profileTitleName.textContent = nameInput.value;
     profileSubtitleAbout.textContent = jobInput.value;
+
+
     // console.log(profileTitleName.textContent, 'Значение Имя')
     // console.log(profileSubtitleAbout.textContent, 'Значение Профессия')
     closePopup();
+    closePopupAddCard();
     // console.log('Popup закрылся')
 }
 popupFormSubmit.addEventListener('click', formSubmitHandler);
@@ -63,14 +120,17 @@ popupFormCloseButton.addEventListener('click', closePopup);
 // он будет следить за событием “submit” - «отправка»
 // formElement.addEventListener('submit', formSubmitHandler);
 
+profileAddButton.addEventListener('click', openPopupAddCard);
+popupAddFormCloseButton.addEventListener('click', closePopupAddCard);
+
 
 
 // добавление карточек средствами JS
-// - создать ячейку карточки в качестве шаблона, которую буду вставлять
+// - создать ячейку карточки в качестве шаблона, которую буду вставлять   ГОТОВО
 
 // - создаю форму добавления карточек (подумать как использовать уже готовую форму попапа)
-//     форма должна открываться по нажатию плюса
-//     форма должна закрываться по нажатию креста
+//     форма должна открываться по нажатию плюса   ГОТОВО
+//     форма должна закрываться по нажатию креста   ГОТОВО
 
 // - добавление карточки на страницу
 //     возможность задать в форме имя карточки
@@ -82,7 +142,7 @@ popupFormCloseButton.addEventListener('click', closePopup);
 //         сердечко должно менять цвет
 
 // - удаление карточки
-//     добавитть иконку корзины (удаления) ГОТОВО
+//     добавитть иконку корзины (удаления)   ГОТОВО
 //     карточка удаляется при клике на иконку удаления
 
 // - открытие попапа с картинкой
