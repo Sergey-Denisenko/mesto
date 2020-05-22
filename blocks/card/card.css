@@ -2,10 +2,12 @@
 @import url(./__info/__info.css);
 @import url(./__title/__title.css);
 @import url(./__like/__like.css);
+@import url(./__trash/__trash.css);
 
 .card {
   width: 282px;
   height: 361px;
   margin: auto;
   display: grid;
+  position: relative;
 }
