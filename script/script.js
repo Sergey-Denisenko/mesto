@@ -10,7 +10,7 @@ const popupFormCloseButton = document.querySelector('.popup__form-close-button')
 const popup = document.querySelector('.popup');
 const popupFormSubmit = document.querySelector('.popup__form-submit');
 
-const profileAddButton = querySelector('.profile__add-button');
+const profileAddButton = document.querySelector('.profile__add-button');
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
 
