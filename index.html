@@ -27,7 +27,7 @@
       </section>
 
       <section class="card-container">
-        <div class="card">
+        <!-- <div class="card">
           <img class="card__image" src="./images/kirill-pershin-d153Cq0LxdE-unsplash.jpg" alt="Бештау. Вид на гору в звкате">
           <div class="card__info">
             <h2 class="card__title">Бештау</h2>
@@ -80,7 +80,7 @@
           </div>
           <button type="button" class="card__trash">
           </button>
-        </div>
+        </div> -->
       </section>
     </main>
 
@@ -106,8 +106,8 @@
       <form class="popup-add-card__container">
         <h3 class="popup-add-card__form-title">Новое место</h3>
         <fieldset class="popup-add-card__form-profile">
-          <input type="text" class="popup-add-card__form-name" name="name" value="Название" required>
-          <input type="text" class="popup-add-card__form-image-link" name="link" value="Ссылка на картинку" required>
+          <input type="text" class="popup-add-card__form-name" name="name" placeholder="Название" value="" required>
+          <input type="text" class="popup-add-card__form-image-link" name="link" placeholder="Ссылка на картинку"  value="" required>
           <button type="submit" class="popup-add-card__form-submit">Сохранить</button>
         </fieldset>
         <button type="button" class="popup-add-card__form-close-button"></button>
@@ -115,7 +115,7 @@
     </div>
 
 <!-- контейнер карточки для вставки через JS -->
-    <template id='card'>
+    <template id="card">
       <div class="card">
         <img class="card__image" src="" alt="">
         <div class="card__info">
@@ -126,6 +126,14 @@
         </button>
       </div>
     </template>
+
+    <div class="popup-image">
+      <figure class="popup-image__figure">
+        <img class="popup-image__image">
+        <figcaption class="popup-image__title">
+        </figcaption>
+      </figure>
+    </div>
 
   </div>
   <script src="./script/script.js"></script>
