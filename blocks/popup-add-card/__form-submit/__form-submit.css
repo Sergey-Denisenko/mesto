@@ -19,3 +19,12 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+@media all and (min-width: 300px) and (max-width: 550px) {
+  .popup-add-card__form-submit  {
+    margin-top: 36px;
+    font-size: 14px;
+    line-height: 17px;
+    height: 40px;
+  }
+}

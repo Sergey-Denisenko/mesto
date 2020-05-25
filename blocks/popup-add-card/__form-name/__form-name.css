@@ -10,3 +10,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   color: #000;
 }
+
+@media all and (min-width: 300px) and (max-width: 550px) {
+  .popup-add-card__form-name {
+    font-size: 12px;
+    line-height: 12px;
+    padding-bottom: 8px;
+  }
+}

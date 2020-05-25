@@ -1,0 +1,13 @@
+@keyframes opacity-off {
+  from {
+    opacity: 1;
+  } to
+  {
+    opacity: 0;
+  }
+}
+
+.animation-close-popup {
+  animation: opacity-off 0.2s linear forwards;
+}
+

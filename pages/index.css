@@ -8,7 +8,11 @@
 @import url(../blocks/card-container/card-container.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/animation-opacity/animation-opacity.css);
+@import url(../blocks/animation-close-popup/animation-close-popup.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup-add-card/popup-add-card.css);
+@import url(../blocks/popup-image/popup-image.css);
 @import url(../blocks/popup/_opened/_opened.css);
 @import url(../blocks/popup-add-card/_opened/_opened.css);
+@import url(../blocks/popup-image/_opened/_opened.css);

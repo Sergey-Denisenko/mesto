@@ -27,60 +27,6 @@
       </section>
 
       <section class="card-container">
-        <!-- <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-d153Cq0LxdE-unsplash.jpg" alt="Бештау. Вид на гору в звкате">
-          <div class="card__info">
-            <h2 class="card__title">Бештау</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-MPNhqIsm6IY-unsplash.jpg" alt="ДОмбай. Извилистая дорога">
-          <div class="card__info">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-ASf8LZbQ2oY-unsplash.jpg" alt="Адлер. Лес на склоне">
-          <div class="card__info">
-            <h2 class="card__title">Адлер</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск. Здание в горах">
-          <div class="card__info">
-            <h2 class="card__title">Карачаевск</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
-          <div class="card__info">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай. Вид на гору">
-          <div class="card__info">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-          <button type="button" class="card__trash">
-          </button>
-        </div> -->
       </section>
     </main>
 
@@ -90,7 +36,7 @@
 
     <div class="popup">
       <form class="popup__container">
-        <h3 class="popup__form-title">Редактировать профиль</h3>
+        <h2 class="popup__form-title">Редактировать профиль</h2>
         <fieldset class="popup__form-profile">
           <input type="text" class="popup__form-name" name="name" value="Ваше имя" required>
           <input type="text" class="popup__form-about" name="prof" value="О себе" required>
@@ -101,20 +47,18 @@
       </form>
     </div>
 
-<!-- попап для добавления карточки -->
     <div class="popup-add-card">
       <form class="popup-add-card__container">
-        <h3 class="popup-add-card__form-title">Новое место</h3>
+        <h2 class="popup-add-card__form-title">Новое место</h2>
         <fieldset class="popup-add-card__form-profile">
           <input type="text" class="popup-add-card__form-name" name="name" placeholder="Название" value="" required>
           <input type="text" class="popup-add-card__form-image-link" name="link" placeholder="Ссылка на картинку"  value="" required>
-          <button type="submit" class="popup-add-card__form-submit">Сохранить</button>
+          <button type="submit" class="popup-add-card__form-submit">Создать</button>
         </fieldset>
         <button type="button" class="popup-add-card__form-close-button"></button>
       </form>
     </div>
 
-<!-- контейнер карточки для вставки через JS -->
     <template id="card">
       <div class="card">
         <img class="card__image" src="" alt="">
@@ -128,13 +72,12 @@
     </template>
 
     <div class="popup-image">
-      <figure class="popup-image__figure">
-        <img class="popup-image__image">
-        <figcaption class="popup-image__title">
-        </figcaption>
-      </figure>
+      <div class="popup-image__container">
+        <button type="button" class="popup-image__close-button"></button>
+        <img class="popup-image__image" src="#" alt="#">
+        <h3 class="popup-image__title">#</h3>
+      </div>
     </div>
-
   </div>
   <script src="./script/script.js"></script>
 </body>

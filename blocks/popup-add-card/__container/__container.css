@@ -16,7 +16,8 @@
 
 @media all and (min-width: 300px) and (max-width: 550px) {
   .popup-add-card__container {
-    left: calc(50% - 109px);
-    width: 218px;
+    width: 240px;
+    height: 258px;
+    left: calc(50% - 120px);
   }
 }
