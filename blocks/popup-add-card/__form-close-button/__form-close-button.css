@@ -7,7 +7,6 @@
   background-image: url("../../../images/close_icon.png");
   background-position: center;
   background-repeat: no-repeat;
-  transition: opacity 0.15s linear 0s;
   border: none;
   background-color: transparent;;
 }
@@ -15,6 +14,10 @@
 .popup-add-card__form-close-button:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.popup-add-card__form-close-button:focus, .card__like:active {
+  outline: none;
 }
 
 @media all and (min-width: 300px) and (max-width: 550px) {

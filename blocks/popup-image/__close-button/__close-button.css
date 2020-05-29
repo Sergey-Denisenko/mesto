@@ -22,6 +22,10 @@
     cursor: pointer;
   }
 
+  .popup-image__close-button:focus, .card__like:active {
+    outline: none;
+  }
+
   @media all and (min-width: 300px) and (max-width: 550px) {
     .popup-image__close-button {
       right: -27px;

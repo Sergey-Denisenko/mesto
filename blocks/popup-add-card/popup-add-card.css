@@ -22,3 +22,9 @@
     background: #000;
     opacity: 0.5;
   }
+
+  /* .popup-add-card:hover {
+    visibility: visible;
+    opacity: 1;
+      transition: visibility 1s, opacity 1s linear;
+  } */

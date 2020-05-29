@@ -23,3 +23,7 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+.card__trash:focus, .card__trash:active {
+  outline: none;
+}

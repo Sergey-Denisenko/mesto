@@ -1,9 +1,9 @@
 .profile__subtitle-about {
   font-size: 18px;
-  line-height: 18px;
+  line-height: 22px;
   font-weight: normal;
   font-style: normal;
-  margin: 16px 0px 0px;
+  margin: 5px 0px 0px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -13,8 +13,8 @@
 @media all and (min-width: 300px) and (max-width: 1023px) {
   .profile__subtitle-about {
     font-size: 14px;
-    line-height: 14px;
-    margin: 10px 0px 0px;
+    line-height: 16px;
+    margin: 7px 0px 0px;
     text-align: center;
     max-width: 230px;
   }

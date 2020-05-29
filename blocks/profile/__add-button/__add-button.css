@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.profile__add-button:focus, .profile__add-button:active {
+  outline: none;
+}
+
 @media all and (min-width: 300px) and (max-width: 1023px) {
   .profile__add-button {
     background-size: 6%;
