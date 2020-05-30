@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;;
+  transition: all 0.15s linear 0s;
 }
 
 .popup-add-card__form-close-button:hover {
@@ -22,10 +23,10 @@
 
 @media all and (min-width: 300px) and (max-width: 550px) {
   .popup-add-card__form-close-button {
-    right: -27px;
-    top: -27px;
+    right: -29px;
+    top: -33px;
     width: 30px;
-    height: 30px;
-    background-image: url("../../../images/close_Icon_3030.png");
+    transition: all 0.15s linear 0s;
+    background-size: cover;
   }
 }

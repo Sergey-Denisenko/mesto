@@ -16,6 +16,7 @@ const popupImage = document.querySelector('.popup-image');
 const popupImageCloseButton = document.querySelector('.popup-image__close-button');
 const popupImageImage = document.querySelector('.popup-image__image');
 const popupImageTitle = document.querySelector('.popup-image__title');
+const cardContainer = document.querySelector('.card-container');
 
 const initialCards = [
   {
@@ -45,9 +46,8 @@ const initialCards = [
 ];
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
-function addCardToPage(evt){
-  const cardContainer = document.querySelector('.card-container');
-  cardContainer.prepend(evt);
+function addCardToPage(evt, item){
+  item.prepend(evt);
 };
 
 /*ОТКРЫТИЕ POPUP*/
@@ -62,13 +62,13 @@ function cardToPage(itemPicName, itemLink) {
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.card__title').textContent = itemPicName;
   cardElement.querySelector('.card__image').src = itemLink;
-  cardElement.querySelector('.card__image').alt = itemPicName;
+  cardElement.querySelector('.card__image').alt = `Картинка ${itemPicName}`;
 
   cardElement.querySelector('.card__image').addEventListener('click', function() {
     openPopupImage();
     popupImageTitle.textContent = itemPicName;
     popupImageImage.src = itemLink;
-    popupImageImage.alt = itemPicName;
+    popupImageImage.alt = `Картинка ${itemPicName}`;
   })
 
   cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
@@ -78,7 +78,8 @@ function cardToPage(itemPicName, itemLink) {
   cardElement.querySelector('.card__trash').addEventListener('click', function(evt) {
     evt.target.closest('.card').remove();
   });
-  addCardToPage(cardElement);
+
+  return cardElement;
 }
 
 //Перебор массива в обратном порядке
@@ -87,6 +88,7 @@ const initCardsRevers = initCardsCopy.reverse();
 //Добавление карточек по умолчанию
 for (let i = 0; i < initCardsRevers.length; i++) {
   cardToPage(initCardsRevers[i].name, initCardsRevers[i].link);
+  addCardToPage(cardToPage(initCardsRevers[i].name, initCardsRevers[i].link), cardContainer);
 }
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
@@ -154,6 +156,7 @@ function formSubmitHandler (evt) {
 function formAddCardSubmitHandler (evt) {
   evt.preventDefault();
   cardToPage(addCardNameInput.value, addCardImageLink.value);
+  addCardToPage(cardToPage(addCardNameInput.value, addCardImageLink.value), cardContainer)
   closePopupAddCard();
 }
 
