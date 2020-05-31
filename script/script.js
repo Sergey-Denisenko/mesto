@@ -53,7 +53,6 @@ function addCardToPage(evt, item){
 /*ОТКРЫТИЕ POPUP*/
 function openPopupImage() {
   popupCommon(popupImage, 'popup-image_opened');
-  animationOpen(popupImage, 'animation-opacity', 'animation-close-popup');
 }
 
 /*МАКЕТ КАРТОЧКИ*/
@@ -87,28 +86,14 @@ const initCardsCopy = initialCards.slice();
 const initCardsRevers = initCardsCopy.reverse();
 //Добавление карточек по умолчанию
 for (let i = 0; i < initCardsRevers.length; i++) {
-  cardToPage(initCardsRevers[i].name, initCardsRevers[i].link);
   addCardToPage(cardToPage(initCardsRevers[i].name, initCardsRevers[i].link), cardContainer);
 }
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
 
-//Функция использует setTimeout для корректного применения
-//анимации затухания окна попапа с последующим удалением класса
+//Общая функция открытия / закрытия окна попапа
 function popupCommon(item, className) {
-  setTimeout(function() {
-    item.classList.toggle(className)
-  }, 200);
-}
-//Функция анимации открытия попапа
-function animationOpen(item, classNameAdd, classNameRemove) {
-  item.classList.add(classNameAdd);
-  item.classList.remove(classNameRemove);
-}
-//Функция анимации закрытия попапа
-function animationClose(item, classNameAdd, classNameRemove) {
-  item.classList.add(classNameAdd);
-  item.classList.remove(classNameRemove);
+  item.classList.toggle(className)
 }
 
 //ФУНКЦИИ ОБРАБОТКИ ОТКРЫТИЯ / ЗАКРЫТИЯ ПОПАПОВ С ИНДИВИДУАЛЬНЫМ ФУНКЦИОНАЛОМ
@@ -117,29 +102,24 @@ function openPopup() {
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
   popupCommon(popup, 'popup_opened');
-  animationOpen(popup, 'animation-opacity', 'animation-close-popup');
 }
 
 function closePopup() {
   popupCommon(popup, 'popup_opened');
-  animationClose(popup, 'animation-close-popup', 'animation-opacity');
 }
 
 function openPopupAddCard() {
   addCardNameInput.value = '';
   addCardImageLink.value = '';
   popupCommon(popupAddCard, 'popup-add-card_opened');
-  animationOpen(popupAddCard, 'animation-opacity', 'animation-close-popup');
 }
 
 function closePopupAddCard() {
   popupCommon(popupAddCard, 'popup-add-card_opened');
-  animationClose(popupAddCard, 'animation-close-popup', 'animation-opacity');
 }
 
 function closePopupImage() {
   popupCommon(popupImage, 'popup-image_opened');
-  animationClose(popupImage, 'animation-close-popup', 'animation-opacity');
   };
 
 /*РАБОТА С ФОРМОЙ ОКНА POPUP*/
@@ -155,7 +135,6 @@ function formSubmitHandler (evt) {
 
 function formAddCardSubmitHandler (evt) {
   evt.preventDefault();
-  cardToPage(addCardNameInput.value, addCardImageLink.value);
   addCardToPage(cardToPage(addCardNameInput.value, addCardImageLink.value), cardContainer)
   closePopupAddCard();
 }

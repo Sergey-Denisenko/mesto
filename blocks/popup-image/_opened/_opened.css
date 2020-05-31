@@ -1,6 +1,7 @@
 .popup-image_opened {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+  -moz-transition: all 0.75s;
 }

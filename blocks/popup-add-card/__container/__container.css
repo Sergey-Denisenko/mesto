@@ -19,5 +19,6 @@
     width: 240px;
     height: 258px;
     left: calc(50% - 120px);
+    top: calc(50% - 129px);
   }
 }
