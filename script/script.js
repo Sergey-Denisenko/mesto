@@ -102,12 +102,12 @@ function popupCommon(item, className) {
 }
 
 
-function popupRemoveVisible(formEl) {
-  const popupRemoveVisibleArray = Array.from(formEl.querySelectorAll(`#${popupInput.id}-error`));
-  popupRemoveVisibleArray.forEach(function(inputSpan) {
-    inputSpan.classList.remove('popup__error_visible')
-  });
-}
+// function popupRemoveVisible(formEl) {
+//   const popupRemoveVisibleArray = Array.from(formEl.querySelectorAll(`#${popupInput.id}-error`));
+//   popupRemoveVisibleArray.forEach(function(inputSpan) {
+//     inputSpan.classList.remove('popup__error_visible')
+//   });
+// }
 // const popupRemoveVisible = document.querySelector('.popup__error');
 // popupRemoveVisible.classList.remove('popup__error_visible');
 
@@ -122,7 +122,7 @@ function openPopup() {
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
   popupCommon(popup, 'popup_opened');
-  popupRemoveVisible(popup);
+  //popupRemoveVisible(popup);
   // popup.classList.remove('popup__error_visible');
   // hideInputError(formElement, inputElement);
 }
@@ -135,7 +135,7 @@ function openPopupAddCard() {
   addCardNameInput.value = '';
   addCardImageLink.value = '';
   popupCommon(popupAddCard, 'popup-add-card_opened');
-  popupRemoveVisible(popupAddCard);
+  //popupRemoveVisible(popupAddCard);
 }
 
 function closePopupAddCard() {

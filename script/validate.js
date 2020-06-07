@@ -1,8 +1,20 @@
-  //popupForm = formElement
+const optionObject = {
+  formSelector: '.popup__form', // Класс формы
+  inputSelector: '.popup__input', // Класс инпута
+  submitButtonSelector: '.popup__button', // Класс кнопки
+  inactiveButtonClass: 'popup__button_disabled', // Класс отключающий кнопку
+  inputErrorClass: 'popup__input_type_error', // Класс отрабатывающий ошибку
+  errorClass: 'popup__error_visible' // Класс показывающий ошибку
+};
+
+//function enableValidation(optionObject) {
+//popupForm = formElement
   //popupInput = formInput
 
-  const popupForm = document.querySelector('.popup__form');
-  const popupInput = popupForm.querySelector('.popup__input');
+  const popupForm = document.querySelector(optionObject.formSelector);
+
+  const popupInput = popupForm.querySelector(optionObject.inputSelector);
+
   // Выбираем элемент ошибки на основе id
   const popupError = popupForm.querySelector(`#${popupInput.id}-error`);
 
@@ -15,15 +27,14 @@
   });
 
   const showInputError = function(formElement, inputElement, errorMessage) {
-
+    console.log(showInputError + ' - это showInputError');
     //popup__error_visible
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-
-
 
     inputElement.classList.add('popup__input_type_error'); //popup__input_type_error
     // Заменим содержимое span с ошибкой на переданный параметр
     errorElement.textContent = errorMessage;
+    console.log('работает2');
     // Показываем сообщение об ошибке
     errorElement.classList.add('popup__error_visible');//popup__error_visible
   };
@@ -35,6 +46,7 @@
     errorElement.classList.remove('popup__error_visible');
      // Очистим ошибку
     errorElement.textContent = '';
+    console.log('работает3');
   };
 
   // Функция проверки валидности поля - переписанная для нескольких полей
@@ -42,9 +54,11 @@
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
       showInputError(formElement, inputElement ,inputElement.validationMessage);
+      console.log('работает4');
     } else {
       // Если проходит валидацию, скроем
       hideInputError(formElement, inputElement);
+      console.log('работает5');
     }
   };
   //Работа с кнопкой сабмит и отмена стандартного поведения
@@ -77,7 +91,7 @@
 
   const setEventListeners = function(formElement) {
    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-
+   console.log('сработал inputList');
   // Найдём в текущей форме кнопку отправки
     const buttonElement = formElement.querySelector('.popup__button');
     toggleButtonState(inputList, buttonElement);
@@ -102,12 +116,13 @@
       setEventListeners(formElement);
     });
   }
-  // enableValidation();
-  enableValidation({
-    formSelector: '.popup__form', // Класс формы
-    inputSelector: '.popup__input', // Класс инпута
-    submitButtonSelector: '.popup__button', // Класс кнопки
-    inactiveButtonClass: 'popup__button_disabled', // Класс отключающий кнопку
-    inputErrorClass: 'popup__input_type_error', // Класс отрабатывающий ошибку
-    errorClass: 'popup__error_visible' // Класс показывающий ошибку
-  });
+  enableValidation();
+  //enableValidation({
+    //formSelector: '.popup__form', // Класс формы
+  //  inputSelector: '.popup__input', // Класс инпута
+  //  submitButtonSelector: '.popup__button', // Класс кнопки
+   // inactiveButtonClass: 'popup__button_disabled', // Класс отключающий кнопку
+  //  inputErrorClass: 'popup__input_type_error', // Класс отрабатывающий ошибку
+  //  errorClass: 'popup__error_visible' // Класс показывающий ошибку
+ // });
+

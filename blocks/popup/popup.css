@@ -8,7 +8,7 @@
 @import url(./__error/__error.css);
 @import url(./__error/_visible/_visible.css);
 @import url(./__input/__input.css);
-@import url(./__input/_type/_type.css);
+@import url(./__input/_type_error/_type_error.css);
 @import url(./__button/__button.css);
 @import url(./__button/_disabled/_disabled.css);
 
