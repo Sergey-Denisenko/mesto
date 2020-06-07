@@ -58,6 +58,7 @@ function addCardToPage(evt, item){
 /*ОТКРЫТИЕ POPUP*/
 function openPopupImage() {
   popupCommon(popupImage, 'popup-image_opened');
+  document.addEventListener("keydown", popupImageCloseEsc, {once: true});
 }
 
 /*МАКЕТ КАРТОЧКИ*/
@@ -98,7 +99,7 @@ for (let i = 0; i < initCardsRevers.length; i++) {
 
 //Общая функция открытия / закрытия окна попапа
 function popupCommon(item, className) {
-  item.classList.toggle(className)
+  item.classList.toggle(className);
 }
 
 
@@ -114,17 +115,46 @@ function popupCommon(item, className) {
 
 
 
+// function eraseError(){
+//   editButton.addEventListener('click', function() {
 
+//     (optionObject.inputSelector).closest(optionObject.errorClass).remove();
+//   });
+// };
 
 //ФУНКЦИИ ОБРАБОТКИ ОТКРЫТИЯ / ЗАКРЫТИЯ ПОПАПОВ С ИНДИВИДУАЛЬНЫМ ФУНКЦИОНАЛОМ
+// function form(item) {
+
+//   const cardTemplate = document.querySelector(".popup__form");
+
+
+// const item =
+
+//   item.querySelector('.popup__input').addEventListener('click', function(evt) {
+//     evt.target.closest('.popup__error_visible').remove();
+//   });
+//   }
+
+
+
 
 function openPopup() {
+  // popup.classList.remove('popup__error_visible');
+  // cardElement.querySelector('.card__trash').addEventListener('click', function(evt) {
+  //   evt.target.closest('.card').remove();
+  // });
+  // eraseError(editButton);
+
+// form();
+  // popupCommon(popup, 'popup__error_visible');
+
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
   popupCommon(popup, 'popup_opened');
   //popupRemoveVisible(popup);
   // popup.classList.remove('popup__error_visible');
   // hideInputError(formElement, inputElement);
+  document.addEventListener("keydown", popupCloseEsc, {once: true});
 }
 
 function closePopup() {
@@ -136,6 +166,7 @@ function openPopupAddCard() {
   addCardImageLink.value = '';
   popupCommon(popupAddCard, 'popup-add-card_opened');
   //popupRemoveVisible(popupAddCard);
+  document.addEventListener("keydown", popupAddCardCloseEsc, {once: true});
 }
 
 function closePopupAddCard() {
@@ -174,6 +205,10 @@ popupFormSubmit.addEventListener('click', formSubmitHandler);
 popupFormSubmit.addEventListener('submit', formSubmitHandler);
 editButton.addEventListener('click', openPopup);
 popupFormCloseButton.addEventListener('click', closePopup);
+
+popupFormCloseButton.addEventListener('click', closePopup);
+
+
 profileAddButton.addEventListener('click', openPopupAddCard);
 popupAddFormCloseButton.addEventListener('click', closePopupAddCard);
 popupAddCardFormSubmit.addEventListener('click', formAddCardSubmitHandler);
@@ -183,4 +218,76 @@ popupImageCloseButton.addEventListener('click', closePopupImage);
 
 // popup.addEventListener('click', closePopupImage());
 
+// function popupCloseEsc() {
+//   const popupCloseEsc = document.querySelector('.popup_opened');
+//   document.addEventListener('keydown', function(event) {
+
+
+//       closePopup();
+//       event.repeat = false;
+//       console.log('сработал Escape');
+//       return;
+//     }
+//   });
+
+// }
+
+
+
+function popupCloseEsc(event) {
+  if (event.code === 'Escape') {
+    closePopup();
+    event.repeat = false;
+    console.log('сработал Escape');
+};
+};
+
+function popupAddCardCloseEsc(event) {
+  if (event.code === 'Escape') {
+    closePopupAddCard();
+    event.repeat = false;
+    console.log('сработал Escape');
+};
+};
+
+function popupImageCloseEsc(event) {
+  if (event.code === 'Escape') {
+    closePopupImage();
+    event.repeat = false;
+    console.log('сработал Escape');
+};
+};
+
+// let closeEsc = document.querySelector('.popup');
+
+// let closeEsc = document.querySelector('.popup');
+// closeEsc.addEventListener("keydown", popupCloseEsc, {once: true});
+
+// popupCloseEsc.addEventListener('keydown', function (evt) {
+//     if (evt.keyCode === 27) {
+//     closePopup();
+//     console.log('ESC pressed');
+//     };
+//  });
+
+
+
+// window.onkeydown = function(event) {
+//   if ( event.keyCode == 27 ) {
+//       console.log( 'escape pressed' );
+//   }
+// };
+// document.addEventListener('keydown', function(event) {
+//   if (event.code == 'Escape') {
+//     alert('Отменить!')
+//     console.log('сработал')
+//   }
+// });
+
+// popupCloseEsc.addEventListener('keydown', function (evt) {
+//     if (evt.code === 27) {
+//     closePopup();
+//     console.log('ESC pressed');
+//     };
+//  });
 

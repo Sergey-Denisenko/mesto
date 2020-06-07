@@ -7,7 +7,57 @@ const optionObject = {
   errorClass: 'popup__error_visible' // Класс показывающий ошибку
 };
 
-//function enableValidation(optionObject) {
+const enableValidation = function() {
+  const formList = Array.from(document.querySelectorAll(optionObject.formSelector));
+  formList.forEach(function(formElement) {
+    formElement.addEventListener('submit', function(evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+}
+
+
+
+
+
+// const eraseError = function(but) {
+//   but.addEventListener('click', function() {
+//     const popupForms = document.querySelectorAll(optionObject.formSelector);
+//     popupForms.forEach
+//     popupForm.classList.remove('popup__error_visible');
+//   });
+// };
+
+// function enableValidation(optionObject) {
+
+//     const popupForms = Array.from(document.querySelectorAll(optionObject.formSelector));
+//     popupForms.forEach(function(popupForm) {
+//       popupForm.addEventListener('submit', function (evt) {
+//         evt.preventDefault();
+//       });
+//       const popupInputs = Array.from(popupForm.querySelectorAll(optionObject.inputSelector));
+
+
+
+//       popupInputs.forEach(function(popupInput) {
+//         popupInput.addEventListener('input', function(evt) {
+//           isValid(popupForm, popupInput)
+//           optionObject.inputErrorClass})
+
+//         });
+//       });
+
+
+
+//       const buttonElement = formElement.querySelector('.popup__button');
+//     });
+// };
+
+// setEventListeners = function(formElement)
+
+
+
 //popupForm = formElement
   //popupInput = formInput
 
@@ -68,7 +118,6 @@ const optionObject = {
   });
 
 
-
   //Блокировка кнопки
   const hasInvalidInput = function (inputList) {
     return inputList.some(function(inputElement) {
@@ -84,9 +133,6 @@ const optionObject = {
       buttonElement.classList.remove('popup__button_disabled');
     }
   };
-
-
-
 
 
   const setEventListeners = function(formElement) {
@@ -107,22 +153,13 @@ const optionObject = {
    });
   }
 
-  const enableValidation = function() {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach(function(formElement) {
-      formElement.addEventListener('submit', function(evt) {
-        evt.preventDefault();
-      });
-      setEventListeners(formElement);
-    });
-  }
-  enableValidation();
-  //enableValidation({
-    //formSelector: '.popup__form', // Класс формы
-  //  inputSelector: '.popup__input', // Класс инпута
-  //  submitButtonSelector: '.popup__button', // Класс кнопки
-   // inactiveButtonClass: 'popup__button_disabled', // Класс отключающий кнопку
-  //  inputErrorClass: 'popup__input_type_error', // Класс отрабатывающий ошибку
-  //  errorClass: 'popup__error_visible' // Класс показывающий ошибку
- // });
-
+  // const enableValidation = function() {
+  //   const formList = Array.from(document.querySelectorAll(optionObject.formSelector));
+  //   formList.forEach(function(formElement) {
+  //     formElement.addEventListener('submit', function(evt) {
+  //       evt.preventDefault();
+  //     });
+  //     setEventListeners(formElement);
+  //   });
+  // }
+  enableValidation(optionObject);
