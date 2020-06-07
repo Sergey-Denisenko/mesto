@@ -59,6 +59,7 @@ function addCardToPage(evt, item){
 function openPopupImage() {
   popupCommon(popupImage, 'popup-image_opened');
   document.addEventListener("keydown", popupImageCloseEsc, {once: true});
+  popupImage.addEventListener("click", clickOverlayPopupImage, {once: true});
 }
 
 /*МАКЕТ КАРТОЧКИ*/
@@ -155,10 +156,26 @@ function openPopup() {
   // popup.classList.remove('popup__error_visible');
   // hideInputError(formElement, inputElement);
   document.addEventListener("keydown", popupCloseEsc, {once: true});
+  // document.addEventListener("click", clickOverlay, {once: true});
+
+  popup.addEventListener("click", clickOverlay, {once: true});
+
+//   popup.addEventListener('click', function(evt) {
+//   if (evt.target.closest('.popup__form') == null) {
+//     console.log('клик');
+//     closePopup();
+//   };
+
+//   console.log(evt.target.closest('.popup__form'));
+// });
+
+deleteError();
 }
 
 function closePopup() {
   popupCommon(popup, 'popup_opened');
+  document.removeEventListener("keydown", popupCloseEsc, {once: true});
+  popup.removeEventListener("click", clickOverlay, {once: true});
 }
 
 function openPopupAddCard() {
@@ -167,14 +184,20 @@ function openPopupAddCard() {
   popupCommon(popupAddCard, 'popup-add-card_opened');
   //popupRemoveVisible(popupAddCard);
   document.addEventListener("keydown", popupAddCardCloseEsc, {once: true});
+  popupAddCard.addEventListener("click", clickOverlayPopupAddCard, {once: true});
+  deleteError();
 }
 
 function closePopupAddCard() {
   popupCommon(popupAddCard, 'popup-add-card_opened');
+  document.removeEventListener("keydown", popupAddCardCloseEsc, {once: true});
+  popupAddCard.removeEventListener("click", clickOverlayPopupAddCard, {once: true});
 }
 
 function closePopupImage() {
   popupCommon(popupImage, 'popup-image_opened');
+  document.removeEventListener("keydown", popupImageCloseEsc, {once: true});
+  popupImage.removeEventListener("click", clickOverlayPopupImage, {once: true});
   };
 
 
@@ -258,36 +281,35 @@ function popupImageCloseEsc(event) {
 };
 };
 
-// let closeEsc = document.querySelector('.popup');
+function clickOverlay(evt) {
+  if (evt.target.closest(".popup__form") == null) {
+    console.log('сработал clickOverlay');
+    console.log('клик клик');
+    closePopup();
+  };
+};
 
-// let closeEsc = document.querySelector('.popup');
-// closeEsc.addEventListener("keydown", popupCloseEsc, {once: true});
+function clickOverlayPopupAddCard(evt) {
+  if (evt.target.closest(".popup__form") == null) {
+    console.log('сработал clickOverlay');
+    console.log('клик клик');
+    closePopupAddCard();
+  };
+};
 
-// popupCloseEsc.addEventListener('keydown', function (evt) {
-//     if (evt.keyCode === 27) {
-//     closePopup();
-//     console.log('ESC pressed');
-//     };
-//  });
+function clickOverlayPopupImage(evt) {
+  if (evt.target.closest(".popup-image__container") == null) {
+    console.log('сработал clickOverlay');
+    console.log('клик клик');
+    closePopupImage();
+  };
+};
 
 
-
-// window.onkeydown = function(event) {
-//   if ( event.keyCode == 27 ) {
-//       console.log( 'escape pressed' );
-//   }
-// };
-// document.addEventListener('keydown', function(event) {
-//   if (event.code == 'Escape') {
-//     alert('Отменить!')
-//     console.log('сработал')
-//   }
-// });
-
-// popupCloseEsc.addEventListener('keydown', function (evt) {
-//     if (evt.code === 27) {
-//     closePopup();
-//     console.log('ESC pressed');
-//     };
-//  });
-
+function deleteError() {
+  const pevs = Array.from(document.querySelectorAll(".popup__error"));
+    pevs.forEach(function(deleteErrorText) {
+    deleteErrorText.classList.remove('popup__error_visible');
+    console.log('сработало удаление класса popup__error_visible');
+});
+};

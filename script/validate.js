@@ -163,3 +163,13 @@ const enableValidation = function() {
   //   });
   // }
   enableValidation(optionObject);
+
+
+
+  // $("body").click(function(e) {
+  //   if($(e.target).closest(".popup").length==0) $(".popup").css("display","none");
+  // });
+
+
+
+
