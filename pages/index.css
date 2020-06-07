@@ -8,9 +8,46 @@
 @import url(../blocks/card-container/card-container.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/popup/popup.css);
+
 @import url(../blocks/popup-add-card/popup-add-card.css);
 @import url(../blocks/popup-image/popup-image.css);
+@import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/_opened.css);
 @import url(../blocks/popup-add-card/_opened/_opened.css);
 @import url(../blocks/popup-image/_opened/_opened.css);
+
+
+
+
+/* .popup__form {
+
+}
+
+.popup__input {
+
+} */
+
+/* .popup__input:valid {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #C4C4C4;
+  border-bottom: 2px solid green;
+} */
+
+/* .popup__input:invalid {
+  border-bottom: 2px solid rgba(255, 0, 0, 1);
+} */
+
+/* .popup__button_disabled {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+} */
+
+/* .popup__input_type_error {
+
+  color: #FF0000;
+  border-bottom: 2px solid rgba(255, 0, 0, 1);
+}; */
+

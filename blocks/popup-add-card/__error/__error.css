@@ -1,0 +1,12 @@
+.popup-add-card__error {
+  display: none;
+  position: relative;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  border: 1px solid rgba(255, 0, 0, 1);
+  box-sizing: border-box;
+  margin-bottom: -17px;
+};

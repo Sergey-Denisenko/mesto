@@ -1,0 +1,11 @@
+.popup__input {
+
+}
+
+.popup__input:valid {
+  border-bottom: 1px solid greenyellow;
+}
+
+.popup__input:invalid {
+  border-bottom: 1px solid rgba(255, 0, 0, 1);
+}
