@@ -1,3 +1,7 @@
 .popup__button {
 
 }
+
+.popup__button:focus {
+  outline: none;
+}

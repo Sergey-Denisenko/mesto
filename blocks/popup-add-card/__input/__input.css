@@ -3,7 +3,7 @@
 }
 
 .popup-add-card__input:valid {
-  border-bottom: 1px solid greenyellow;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
 .popup-add-card__input:invalid {
