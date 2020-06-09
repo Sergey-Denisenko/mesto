@@ -1,6 +1,6 @@
 .popup__form-profile {
   width: calc(100% - 36px - 36px);
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
