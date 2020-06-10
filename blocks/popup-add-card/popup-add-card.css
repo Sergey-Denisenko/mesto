@@ -13,18 +13,4 @@
 @import url(./__button/_disabled/_disabled.css);
 
 .popup-add-card {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.75s;
-  -webkit-transition: all 0.75s;
-  -moz-transition: all 0.75s;
   }

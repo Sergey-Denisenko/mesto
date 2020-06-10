@@ -43,13 +43,13 @@
           <input id="prof-input" type="text" class="popup__form-about popup__input" name="prof" value="О себе" required minlength="2" maxlength="200" autocomplete="off">
           <span id="prof-input-error" class="popup__error"></span>
           <!-- <input type="submit" class="popup__form-submit" value="Сохранить"> -->
-          <button type="submit" class="popup__form-submit popup__button">Сохранить</button>
+          <button type="submit" class="popup__form-submit popup__button" required>Сохранить</button>
         </fieldset>
         <button type="button" class="popup__form-close-button"></button>
       </form>
     </div>
 
-    <div class="popup-add-card">
+    <div class="popup popup-add-card">
       <form class="popup-add-card__container popup__form" novalidate>
         <h2 class="popup-add-card__form-title">Новое место</h2>
         <fieldset class="popup-add-card__form-profile">
@@ -57,7 +57,7 @@
           <span id="name-input-error" class="popup__error"></span>
           <input id="link-input" type="url" class="popup-add-card__form-image-link popup__input" name="link" placeholder="Ссылка на картинку"  value="" required autocomplete="off">
           <span id="link-input-error" class="popup__error"></span>
-          <button type="submit" class="popup-add-card__form-submit popup__button">Создать</button>
+          <button type="submit" class="popup-add-card__form-submit popup__button" required>Создать</button>
         </fieldset>
         <button type="button" class="popup-add-card__form-close-button"></button>
       </form>
@@ -75,7 +75,7 @@
       </div>
     </template>
 
-    <div class="popup-image">
+    <div class="popup-image popup">
       <div class="popup-image__container">
         <button type="button" class="popup-image__close-button"></button>
         <img class="popup-image__image" src="#" alt="#">
