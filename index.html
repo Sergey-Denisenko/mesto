@@ -36,14 +36,22 @@
 
     <div class="popup">
       <form class="popup__container popup__form" novalidate>
+        <!-- popup__container popup__form -->
         <h2 class="popup__form-title">Редактировать профиль</h2>
+        <!-- popup__form-title -->
         <fieldset class="popup__form-profile">
+          <!-- popup__form-profile -->
           <input id="name-input" type="text" class="popup__form-name popup__input" name="name" value="Ваше имя" required minlength="2" maxlength="40" autocomplete="off">
+          <!-- popup__input -->
           <span id="name-input-error" class="popup__error"></span>
+          <!-- popup__error -->
           <input id="prof-input" type="text" class="popup__form-about popup__input" name="prof" value="О себе" required minlength="2" maxlength="200" autocomplete="off">
+          <!-- popup__input -->
           <span id="prof-input-error" class="popup__error"></span>
+          <!-- popup__error -->
           <!-- <input type="submit" class="popup__form-submit" value="Сохранить"> -->
           <button type="submit" class="popup__form-submit popup__button" required>Сохранить</button>
+          <!-- popup__button popup__button_form-submit -->
         </fieldset>
         <button type="button" class="popup__form-close-button"></button>
       </form>
@@ -51,15 +59,24 @@
 
     <div class="popup popup-add-card">
       <form class="popup-add-card__container popup__form" novalidate>
+        <!-- popup__container_ popup__form -->
         <h2 class="popup-add-card__form-title">Новое место</h2>
+        <!-- popup__form-title -->
         <fieldset class="popup-add-card__form-profile">
+          <!-- popup__form-add-card -->
           <input id="name-input" type="text" class="popup-add-card__form-name popup__input" name="name" placeholder="Название" value="" required minlength="1" maxlength="30" autocomplete="off">
+          <!-- popup__input -->
           <span id="name-input-error" class="popup__error"></span>
+          <!-- popup__error -->
           <input id="link-input" type="url" class="popup-add-card__form-image-link popup__input" name="link" placeholder="Ссылка на картинку"  value="" required autocomplete="off">
+          <!-- popup__input -->
           <span id="link-input-error" class="popup__error"></span>
+          <!-- popup__error -->
           <button type="submit" class="popup-add-card__form-submit popup__button" required>Создать</button>
+          <!-- popup__button popup__button-form-add-card-submit -->
         </fieldset>
         <button type="button" class="popup-add-card__form-close-button"></button>
+        <!-- popup__form-close-button popup__form-close-button-add-card -->
       </form>
     </div>
 

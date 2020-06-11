@@ -24,7 +24,7 @@ const popupImageImage = document.querySelector('.popup-image__image');
 const popupImageTitle = document.querySelector('.popup-image__title');
 
 const cardContainer = document.querySelector('.card-container');
-
+// const cardLikeButton = document.querySelector('.card__like')
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
@@ -33,10 +33,23 @@ function addCardToPage(evt, item){
 };
 
 /*ОТКРЫТИЕ POPUP*/
-function openPopupImage() {
+function openPopupImage(ImageName, ImageLink) {
+  popupImageTitle.textContent = ImageName;
+  popupImageImage.src = ImageLink;
+  popupImageImage.alt = `Картинка ${ImageName}`;
   popupCommon(popupImage, 'popup_opened');
   document.addEventListener("keydown", commonFunctionCloseEsc);
   popupImage.addEventListener("click", commonFunctionClickOverlay);
+};
+
+const cardLikeSwitcher = function(evt) {
+  evt.target.classList.toggle('card__like_active-black');
+  console.log('cardLikeSwitcher сработал');
+};
+
+const cardToTrash = function(evt) {
+  evt.target.closest('.card').remove();
+  console.log('cardToTrash сработал');
 };
 
 /*МАКЕТ КАРТОЧКИ*/
@@ -48,14 +61,22 @@ function cardToPage(itemPicName, itemLink) {
   cardElement.querySelector('.card__image').alt = `Картинка ${itemPicName}`;
 
   cardElement.querySelector('.card__image').addEventListener('click', function() {
-    openPopupImage();
-    popupImageTitle.textContent = itemPicName;
-    popupImageImage.src = itemLink;
-    popupImageImage.alt = `Картинка ${itemPicName}`;
-  })
+    openPopupImage(itemPicName, itemLink);
+  });
+  cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+    cardLikeSwitcher(evt);
+    console.log('cardLikeSwitcher(evt) сработал');
+  });
 
+
+  cardElement.querySelector('.card__trash').addEventListener('click', function(evt) {
+    cardToTrash(evt);
+    console.log('cardToTrash(evt) сработал');
+  });
   return cardElement;
 };
+
+
 
 //Перебор массива в обратном порядке
 const initCardsCopy = initialCards.slice();
@@ -66,24 +87,25 @@ for (let i = 0; i < initCardsRevers.length; i++) {
 };
 
 /*ДОБАВЛЕНИЕ ИМЕНОВАННОЙ ФУНКЦИИ ПОСТАВИТЬ / СНЯТЬ ЛАЙК*/
-const cardLikeSwitcher = function() {
-  const cardLikeList = Array.from(document.querySelectorAll('.card__like'));
-  cardLikeList.forEach(function(likeItem) {
-    likeItem.addEventListener('click', function(evt) {
-      evt.target.classList.toggle('card__like_active-black');
-    });
-  });
-};
+// const cardLikeSwitcher = function() {
+//   const cardLikeList = Array.from(document.querySelectorAll('.card__like'));
+//   cardLikeList.forEach(function(likeItem) {
+//     likeItem.addEventListener('click', function(evt) {
+//       evt.target.classList.toggle('card__like_active-black');
+//     });
+//   });
+// };
+
 
 /*ДОБАВЛЕНИЕ ИМЕНОВАННОЙ ФУНКЦИИ УДАЛЕНИЯ КАРТОЧКИ*/
-const cardToTrash = function() {
-  const cardTrashItemList = Array.from(document.querySelectorAll('.card__trash'));
-  cardTrashItemList.forEach(function(trashItem) {
-    trashItem.addEventListener('click', function(evt) {
-    evt.target.closest('.card').remove();
-    });
-  });
-};
+// const cardToTrash = function() {
+//   const cardTrashItemList = Array.from(document.querySelectorAll('.card__trash'));
+//   cardTrashItemList.forEach(function(trashItem) {
+//     trashItem.addEventListener('click', function(evt) {
+//     evt.target.closest('.card').remove();
+//     });
+//   });
+// };
 
 /*УБИРАЮ ПОКАЗ СООБЩЕНИЙ ВАЛИДАНИИ ИНПУТОВ ПРИ ОТКРЫТИИ POPUP*/
 function deleteError() {
@@ -218,5 +240,5 @@ popupAddCardFormSubmit.addEventListener('submit', formAddCardSubmitHandler);
 
 popupImageCloseButton.addEventListener('click', closePopupImage);
 
-cardLikeSwitcher();
-cardToTrash();
+// cardLikeSwitcher();
+// cardToTrash();
