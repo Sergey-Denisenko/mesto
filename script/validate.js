@@ -7,16 +7,6 @@ const optionObject = {
   errorClass: 'popup__error_visible' // Класс показывающий ошибку
 };
 
-const enableValidation = function() {
-  const formList = Array.from(document.querySelectorAll(optionObject.formSelector));
-  formList.forEach(function(popupForm) {
-    popupForm.addEventListener('submit', function(evt) {
-      evt.preventDefault();
-    });
-    setEventListeners(popupForm);
-  });
-}
-
 const showInputError = function(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(optionObject.inputErrorClass); //popup__input_type_error
@@ -54,10 +44,14 @@ const toggleButtonState = function(inputList, buttonElement) {
   }
 };
 
+function controlFormInput(formElement, buttonElement){
+  const hasErrors = !formElement.checkValidity();
+  buttonElement.disabled = hasErrors;
+};
+
 const setEventListeners = function(formElement) {
   const inputList = Array.from(formElement.querySelectorAll(optionObject.inputSelector));
   const buttonElement = formElement.querySelector(optionObject.submitButtonSelector);
-  // toggleButtonState(inputList, buttonElement);
   inputList.forEach(function(inputElement) {
     inputElement.addEventListener('input', function() {
       isValid(formElement, inputElement);
@@ -66,4 +60,18 @@ const setEventListeners = function(formElement) {
   });
 }
 
-enableValidation(optionObject);
+const enableValidation = function(optionObject) {
+  const formList = Array.from(document.querySelectorAll(optionObject.formSelector));
+  formList.forEach(function(formItem) {
+
+    const submitButton = formItem.querySelector(optionObject.submitButtonSelector);
+    formItem.addEventListener('input', function() {
+      controlFormInput(formItem, submitButton)
+    });
+
+    formItem.addEventListener('submit', function(evt) {
+      evt.preventDefault()
+    });
+    setEventListeners(formItem);
+  });
+};

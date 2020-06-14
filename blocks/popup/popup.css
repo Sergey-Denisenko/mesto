@@ -11,6 +11,7 @@
 @import url(./__input/_type_error/_type_error.css);
 @import url(./__button/__button.css);
 @import url(./__button/_disabled/_disabled.css);
+@import url(./__overlay/__overlay.css);
 
 .popup {
   position: fixed;
