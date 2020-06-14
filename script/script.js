@@ -26,7 +26,6 @@ const popupImageImage = document.querySelector('.popup-image__image');
 const popupImageTitle = document.querySelector('.popup-image__title');
 
 const cardContainer = document.querySelector('.card-container');
-
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
