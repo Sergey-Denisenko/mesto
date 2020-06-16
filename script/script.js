@@ -29,18 +29,16 @@ const cardContainer = document.querySelector('.card-container');
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
-function addCardToPage(evt, item){
-  item.prepend(evt);
+function addCardToPage(evt, card){
+  card.prepend(evt);
 };
 
 /*ОТКРЫТИЕ POPUP*/
-function openPopupImage(ImageName, ImageLink) {
-  popupImageTitle.textContent = ImageName;
-  popupImageImage.src = ImageLink;
-  popupImageImage.alt = `Картинка ${ImageName}`;
+function openPopupImage(imageName, imageLink) {
+  popupImageTitle.textContent = imageName;
+  popupImageImage.src = imageLink;
+  popupImageImage.alt = `Картинка ${imageName}`;
   popupCommon(popupImage, 'popup_opened');
-  document.addEventListener("keydown", commonFunctionCloseEsc);
-  popupImage.addEventListener("click", commonFunctionClickOverlay);
   popupImageCloseButton.addEventListener('click', closePopupImage);
 };
 
@@ -87,66 +85,64 @@ for (let i = 0; i < initCardsRevers.length; i++) {
 /*УБИРАЮ ПОКАЗ СООБЩЕНИЙ ВАЛИДАНИИ ИНПУТОВ ПРИ ОТКРЫТИИ POPUP*/
 
 function hideError(form) {
-  const popupErrors = form.querySelectorAll('.popup__error');
-  popupErrors.forEach(function(deleteErrorText) {
+  form.querySelectorAll('.popup__error').forEach(function(deleteErrorText) {
     deleteErrorText.classList.remove("popup__error_visible");
   });
+  form.querySelectorAll('.popup__input').forEach(function(deleteErrorText) {
+    deleteErrorText.classList.remove("popup__input_type_error");
+  });
 };
-
-/*ОТКЛЮЧАЮ КНОПКУ САБМИТ ПРИ ОТКРЫТИИ POPUP*/
-// Функция отключения кнопки переделана и перенесена в файл validate.js
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
 
 //Общая функция открытия / закрытия окна попапа
 function popupCommon(item, className) {
   item.classList.toggle(className);
+  if (item.classList.contains('popup_opened')) {
+    document.addEventListener("keydown", commonFunctionCloseEsc);
+    item.addEventListener("click", commonFunctionClickOverlay);
+  } else {
+    document.removeEventListener("keydown", commonFunctionCloseEsc);
+    item.removeEventListener("click", commonFunctionClickOverlay);
+  }
 };
 
 function openPopupProfile() {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+  toggleButtonState(inputList, popupFormSubmit);
   popupCommon(popup, 'popup_opened');
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
-  document.addEventListener("keydown", commonFunctionCloseEsc);
-  popup.addEventListener("click", commonFunctionClickOverlay);
   hideError(popupContainer);
   popupFormCloseButton.addEventListener('click', closePopupProfile);
   popup.querySelector('.popup__button').classList.add('popup__button_disabled');
-  popup.querySelector('.popup__form').addEventListener('submit', formSubmitHandler, enableValidation(optionObject));
+  popup.querySelector('.popup__form').addEventListener('submit', formSubmitHandler);
 };
 
 function closePopupProfile() {
-  document.removeEventListener("keydown", commonFunctionCloseEsc);
-  popup.removeEventListener("click", commonFunctionClickOverlay);
   popupFormCloseButton.removeEventListener('click', closePopupProfile);
-  popup.querySelector('.popup__form').removeEventListener('submit', formSubmitHandler, enableValidation(optionObject));
   popupCommon(popup, 'popup_opened');
 };
 
 function openPopupAddCard() {
+  const inputList = Array.from(popupAddCard.querySelectorAll('.popup__input'));
+  toggleButtonState(inputList, popupAddCardFormSubmit);
   addCardNameInput.value = '';
   addCardImageLink.value = '';
   popupCommon(popupAddCard, 'popup_opened');
-  document.addEventListener("keydown", commonFunctionCloseEsc);
-  popupAddCard.addEventListener("click", commonFunctionClickOverlay);
   hideError(popupAddCardContainer);
   popupAddFormCloseButton.addEventListener('click', closePopupAddCard);
   popupAddCard.querySelector('.popup__button').classList.add('popup__button_disabled');
-  popupAddCard.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler, enableValidation(optionObject));
+  popupAddCard.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler);
 };
 
 function closePopupAddCard() {
   popupCommon(popupAddCard, 'popup_opened');
-  document.removeEventListener("keydown", commonFunctionCloseEsc);
-  popupAddCard.removeEventListener("click", commonFunctionClickOverlay);
   popupAddFormCloseButton.removeEventListener('click', closePopupAddCard);
-  popupAddCard.querySelector('.popup__form').removeEventListener('submit', formAddCardSubmitHandler, enableValidation(optionObject));
 };
 
 function closePopupImage() {
   popupCommon(popupImage, 'popup_opened');
-  document.removeEventListener("keydown", commonFunctionCloseEsc);
-  popupImage.removeEventListener("click", commonFunctionClickOverlay);
   popupImageCloseButton.removeEventListener('click', closePopupImage);
 };
 
@@ -163,7 +159,7 @@ function commonFunctionCloseEsc(evt) {
 
 function commonFunctionClickOverlay(evt) {
   const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target.closest('.popup__overlay') == null && openedPopup) {
+  if (evt.target.classList.contains('popup__overlay')) {
     openedPopup.classList.remove('popup_opened');
   };
 };

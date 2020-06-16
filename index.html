@@ -34,8 +34,8 @@
       <p class="footer__info">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <form class="popup__container popup__form popup__overlay" novalidate>
+    <div class="popup popup__overlay">
+      <form class="popup__container popup__form" novalidate>
         <h2 class="popup__form-title">Редактировать профиль</h2>
         <fieldset class="popup__form-profile popup__fieldset">
           <input id="name-input" type="text" class="popup__form-name popup__input" name="name" value="Ваше имя" minlength="2" maxlength="40" autocomplete="off" required>
@@ -44,12 +44,12 @@
           <span id="prof-input-error" class="popup__error"></span>
           <button disabled type="submit" class="popup__form-submit popup__button popup__button_disabled">Сохранить</button>
         </fieldset>
-        <button type="button" class="popup__form-close-button"></button>
+        <button type="button" class="popup__form-close-button popup__close-button"></button>
       </form>
     </div>
 
-    <div class="popup popup-add-card">
-      <form class="popup-add-card__container popup__form popup__overlay" novalidate>
+    <div class="popup popup-add-card popup__overlay">
+      <form class="popup-add-card__container popup__form" novalidate>
         <h2 class="popup-add-card__form-title">Новое место</h2>
         <fieldset class="popup-add-card__form-profile popup__fieldset">
           <input id="name-input" type="text" class="popup-add-card__form-name popup__input" name="name" placeholder="Название" value="" minlength="1" maxlength="30" autocomplete="off" required>
@@ -58,7 +58,7 @@
           <span id="link-input-error" class="popup__error"></span>
           <button disabled type="submit" class="popup-add-card__form-submit popup__button popup__button_disabled">Создать</button>
         </fieldset>
-        <button type="button" class="popup-add-card__form-close-button"></button>
+        <button type="button" class="popup-add-card__form-close-button popup__close-button"></button>
       </form>
     </div>
 
@@ -74,9 +74,9 @@
       </div>
     </template>
 
-    <div class="popup-image popup">
-      <div class="popup-image__container popup__overlay">
-        <button type="button" class="popup-image__close-button"></button>
+    <div class="popup-image popup popup__overlay">
+      <div class="popup-image__container">
+        <button type="button" class="popup-image__close-button popup__close-button"></button>
         <img class="popup-image__image" src="#" alt="#">
         <h3 class="popup-image__title">#</h3>
       </div>
