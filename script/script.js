@@ -11,6 +11,7 @@ const popupFormCloseButton = document.querySelector('.popup__form-close-button')
 const popup = document.querySelector('.popup');
 const popupFormSubmit = document.querySelector('.popup__form-submit');
 const popupContainer = popup.querySelector('.popup__container');
+const popupProfile = document.querySelector('.popup-profile');
 
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup-add-card');
@@ -29,8 +30,8 @@ const cardContainer = document.querySelector('.card-container');
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
-function addCardToPage(evt, card){
-  card.prepend(evt);
+function addCardToPage(card, container){
+  container.prepend(card);
 };
 
 /*ОТКРЫТИЕ POPUP*/
