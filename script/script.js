@@ -1,3 +1,6 @@
+import { DefaultCard, UserCard } from './Card.js';
+// import { FormValidator, } from './FormValidator.js';
+
 // КАРТОЧКИ ПО УМОЛЧАНИЮ ПОДКЛЮЧЕНЫ ОТДЕЛЬНЫМ ФАЙЛОМ - initial-cards.js
 
 const profileTitleName = document.querySelector('.profile__title-name');
@@ -18,7 +21,7 @@ const addCardImageLink = document.querySelector('.popup-add-card__form-image-lin
 const popupAddCardFormSubmit = document.querySelector('.popup-add-card__form-submit');
 const popupAddCardContainer = popupAddCard.querySelector('.popup-add-card__container');
 
-const userDataForCardObject = [
+const userDataCardObject = [
   {
     name: addCardNameInput.value,
     link: addCardImageLink.value
@@ -34,126 +37,7 @@ nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 
 
-
-
-
-
-class Card {
-  //  constructor(data, cardSelector) {//один параметр - Селектор темплейта
-   constructor(cardSelector) {//один параметр - Селектор темплейта
-    this._cardSelector = cardSelector;
-      // super(cardSelector);
-      // this._title = data.name;
-      // this._image = data.link;
-
-      console.log('Card cardSelector check');
-   }
-  //получаю готовую разметку перед размещением на страницу
-  //Задача метода _getTemplate — вернуть разметку карточки через return
-  _getTemplate() {
-    // забираю размеку из HTML и клонирую элемент
-    const cardElement = document
-    .querySelector(this._cardSelector)//('.card-template')
-    // .querySelector('.card-template')
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
-    // верну DOM-элемент карточки
-    // this._element = cardElement;
-    return cardElement;
-    }
-
-    // //Подготовка карточки к публикации. Добавление данных в разметку
-    // generateCard() {
-    //   this._element = this._getTemplate();
-    //   this._setEventListeners();
-    //   this._element.querySelector('.card__title').textContent = this._title //itemPicName; //СВОЙСТВО
-    //   this._element.querySelector('.card__image').src = this._image; //СВОЙСТВО
-    //   this._element.querySelector('.card__image').alt = `Картинка ${this._title}`; //СВОЙСТВО
-    //   return this._element;
-    // }
-
-    _handleImageClick() {
-      openPopupImage();
-    }
-
-    _handleLikeClick() {
-      this._element.querySelector('.card__like').classList.toggle('card__like_active-black');
-    }
-
-
-    _handleTrashClick() {
-      this._element.querySelector('.card__trash').closest('.card').remove();
-    }
-
-
-
-    _setEventListeners() {
-      this._element.querySelector('.card__like').addEventListener('click', () => {
-        this._handleLikeClick();
-      });
-      this._element.querySelector('.card__trash').addEventListener('click', () => {
-        this._handleTrashClick();
-      });
-      this._element.querySelector('.card__image').addEventListener('click', () => {
-        this._handleImageClick();
-      });
-
-    }
-}
-
-
-class DefaultCard extends Card {
-  constructor(data, cardSelector) {//один параметр - Селектор темплейта
-  super(cardSelector);
-
-  this._title = data.name;
-  this._image = data.link;
-
-    console.log('DefaultCard check');
-    // console.log(this._title, this._image);
-
- }
-
-  //Подготовка карточки к публикации. Добавление данных в разметку
-  generateCard() {
-    this._element = super._getTemplate();
-    super._setEventListeners();
-    this._element.querySelector('.card__title').textContent = this._title //itemPicName; //СВОЙСТВО
-    this._element.querySelector('.card__image').src = this._image; //СВОЙСТВО
-    this._element.querySelector('.card__image').alt = `Картинка ${this._title}`; //СВОЙСТВО
-    console.log(this._element);
-    console.log('generateCard DefaultCard check');
-
-    return this._element;
-
-  }
-}
-class UserCard extends Card {
-  constructor(userDataForCardObject, cardSelector) {//один параметр - Селектор темплейта
-    super(cardSelector);
-
-    this._title = userDataForCardObject.name;
-    this._image = userDataForCardObject.link;
-    this._isUser = true;
-
-      console.log('UserCard check');
-   }
-
-  generateCard() {
-    this._element = super._getTemplate();
-    super._setEventListeners();
-    this._element.querySelector('.card__title').textContent = addCardNameInput.value //itemPicName; //СВОЙСТВО
-    this._element.querySelector('.card__image').src = addCardImageLink.value; //СВОЙСТВО
-    this._element.querySelector('.card__image').alt = `Картинка ${addCardNameInput.value}`; //СВОЙСТВО
-    return this._element;
-  }
-}
-
 function addCardToContainer(item, cardType) {
-  // const card = item.isDefault
-  //   ? new DefaultCard(item, '.card-template')
-  //   : new UserCard(item, '.card-template');
     const card = new cardType(item, '.card-template')
     const cardElement = card.generateCard();
     cardContainer.prepend(cardElement);
@@ -162,34 +46,12 @@ function addCardToContainer(item, cardType) {
 //Перебор массива в обратном порядке
 const initCardsCopy = initialCards.slice();
 const initCardsRevers = initCardsCopy.reverse();
-initCardsRevers.forEach(function (item) {
-  addCardToContainer(item, DefaultCard);
+initCardsRevers.forEach(function (cardItem) {
+  addCardToContainer(cardItem, DefaultCard);
   });
 
 
-//--------------------------РАБОЧИЙ ВАРИАНТ
-// initialCards.forEach(function (item) {
-//   const card = new Card(item, '.card-template');
-//   const cardElement = card.generateCard();
-//   cardContainer.append(cardElement);
-// });
-
-//--------------------------РАБОЧИЙ ВАРИАНТ
-// initialCards.forEach(function (item) {
-//   const card = new Card(item);
-//   const cardElement = card.generateCard();
-//   cardContainer.append(cardElement);
-// });
-//--------------------------
-
 console.log('check');
-
-
-
-
-
-
-
 
 
 /*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
@@ -198,52 +60,12 @@ console.log('check');
 // };
 
 /*ОТКРЫТИЕ POPUP*/
-function openPopupImage(imageName, imageLink) {
+export function openPopupImage(imageName, imageLink) {
   popupImageTitle.textContent = imageName;
   popupImageImage.src = imageLink;
   popupImageImage.alt = `Картинка ${imageName}`;
   popupCommon(popupImage, 'popup_opened');
 };
-
-/*ДОБАВЛЕНИЕ ИМЕНОВАННОЙ ФУНКЦИИ ПОСТАВИТЬ / СНЯТЬ ЛАЙК*/
-// const cardLikeSwitcher = function(evt) {
-//   evt.target.classList.toggle('card__like_active-black');
-// };
-
-/*ДОБАВЛЕНИЕ ИМЕНОВАННОЙ ФУНКЦИИ УДАЛЕНИЯ КАРТОЧКИ*/
-// const cardToTrash = function(evt) {
-//   evt.target.closest('.card').remove();
-// };
-
-/*МАКЕТ КАРТОЧКИ*/
-// function cardToPage(itemPicName, itemLink) {
-//   const cardTemplate = document.querySelector('#card').content;
-//   const cardElement = cardTemplate.cloneNode(true);
-//   cardElement.querySelector('.card__title').textContent = itemPicName; //СВОЙСТВО
-//   cardElement.querySelector('.card__image').src = itemLink; //СВОЙСТВО
-//   cardElement.querySelector('.card__image').alt = `Картинка ${itemPicName}`; //СВОЙСТВО
-
-//   cardElement.querySelector('.card__image').addEventListener('click', function() {
-//     openPopupImage(itemPicName, itemLink);
-//   }); //МЕТОД
-
-//   cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
-//     cardLikeSwitcher(evt); //МЕТОД
-//   });
-
-//   cardElement.querySelector('.card__trash').addEventListener('click', function(evt) {
-//     cardToTrash(evt); //МЕТОД
-//   });
-//   return cardElement;
-// };
-
-//Перебор массива в обратном порядке
-// const initCardsCopy = initialCards.slice();
-// const initCardsRevers = initCardsCopy.reverse();
-//Добавление карточек по умолчанию
-// for (let i = 0; i < initCardsRevers.length; i++) {
-//   addCardToPage(cardToPage(initCardsRevers[i].name, initCardsRevers[i].link), cardContainer);
-// };
 
 /*УБИРАЮ ПОКАЗ СООБЩЕНИЙ ВАЛИДАНИИ ИНПУТОВ ПРИ ОТКРЫТИИ POPUP*/
 
@@ -336,7 +158,10 @@ function formAddCardSubmitHandler(evt) {
   //cardContainer.append(addCardToContainer());
   // addCardToContainer();
   // cardContainer.append(addCardToContainer(new UserCard(userDataForCardObject, cardSelector)));
-  addCardToContainer(userDataForCardObject, UserCard);
+  userDataCardObject.name = addCardNameInput.value;
+  userDataCardObject.link = addCardImageLink.value;
+  addCardToContainer(userDataCardObject, UserCard);
+  console.log(userDataCardObject);
   popupCommon(popupAddCard, 'popup_opened');
 };
 
