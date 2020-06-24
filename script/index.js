@@ -1,7 +1,7 @@
-import { DefaultCard, UserCard } from './Card.js';
+import { Card } from './Card.js';
 import { FormValidator, optionObject } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
-
+import { popupCommon } from './utils.js';
 
 // КАРТОЧКИ ПО УМОЛЧАНИЮ ПОДКЛЮЧЕНЫ ОТДЕЛЬНЫМ ФАЙЛОМ - initial-cards.js
 
@@ -21,42 +21,22 @@ const addCardNameInput = document.querySelector('.popup-add-card__form-name');
 const addCardImageLink = document.querySelector('.popup-add-card__form-image-link');
 const popupAddCardContainer = popupAddCard.querySelector('.popup-add-card__container');
 
-const userDataCardObject = [
-  {
-    name: addCardNameInput.value,
-    link: addCardImageLink.value
-  }
-]
-
-const popupImage = document.querySelector('.popup-image');
-const popupImageImage = document.querySelector('.popup-image__image');
-const popupImageTitle = document.querySelector('.popup-image__title');
 const cardContainer = document.querySelector('.card-container');
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
-// Добавление карточки на страницу
-// item - userDataCardObject или initialCards
- // cardType - класс макета карточки
-function addCardToContainer(item, cardType) {
-  const card = new cardType(item, '.card-template');
+function addCardToContainer(item, cardTemlateClass) {
+  const card = new Card(item, cardTemlateClass);
   const cardElement = card.generateCard();
   cardContainer.prepend(cardElement);
-}
-
+};
 //Перебор массива в обратном порядке
 const initCardsCopy = initialCards.slice();
 const initCardsRevers = initCardsCopy.reverse();
 initCardsRevers.forEach(function (cardItem) {
-  addCardToContainer(cardItem, DefaultCard);
+  addCardToContainer(cardItem, '.card-template');
 });
 
-/*ОТКРЫТИЕ POPUP*/
-export function openPopupImage(imageName, imageLink) {
-  popupImageTitle.textContent = imageName;
-  popupImageImage.src = imageLink;
-  popupImageImage.alt = `Картинка ${imageName}`;
-  popupCommon(popupImage, 'popup_opened');
-};
+/*Функцию открытия попапа картинки openPopupImage перенесена файл utils.js*/
 
 /*УБИРАЮ ПОКАЗ СООБЩЕНИЙ ВАЛИДАНИИ ИНПУТОВ ПРИ ОТКРЫТИИ POPUP*/
 
@@ -71,19 +51,7 @@ function hideError(form) {
 
 /*ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА POPUP*/
 
-//Общая функция открытия / закрытия окна попапа
-function popupCommon(item, className) {
-  item.classList.toggle(className);
-  if (item.classList.contains('popup_opened')) {
-    document.addEventListener("keydown", commonFunctionCloseEsc);
-    item.addEventListener("click", commonFunctionClickOverlay);
-    item.addEventListener('click', commonFunctionClickCloseButton);
-  } else {
-    document.removeEventListener("keydown", commonFunctionCloseEsc);
-    item.removeEventListener("click", commonFunctionClickOverlay);
-    item.removeEventListener('click', commonFunctionClickCloseButton);
-  }
-};
+//Общая функция открытия / закрытия окна попапа popupCommon перенесена в файл utils.js
 
 function openPopupProfile() {
   popupCommon(popupProfile, 'popup_opened');
@@ -101,32 +69,14 @@ function openPopupAddCard() {
   popupAddCard.querySelector('.popup__button').classList.add('popup__button_disabled');
 };
 
-/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО НАЖАТИЮ ESCAPE*/
+/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО НАЖАТИЮ*/
+/*ESCAPE commonFunctionCloseEsc ПЕРЕНЕСЕНА В ФАЙЛ utils.js*/
 
-function commonFunctionCloseEsc(evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape' && openedPopup) {
-    popupCommon(openedPopup, 'popup_opened');
-  };
-};
+/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО КЛИКУs*/
+/*ПО ОВЕРЛЕЙ commonFunctionClickOverlay ПЕРЕНЕСЕНА В ФАЙЛ utils.js*/
 
-/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО КЛИКУ ПО ОВЕРЛЕЙ*/
-
-function commonFunctionClickOverlay(evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target.classList.contains('popup__overlay')) {
-    popupCommon(openedPopup, 'popup_opened');
-  };
-};
-
-/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО КЛИКУ НА КРЕСТИК */
-
-function commonFunctionClickCloseButton(evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target.classList.contains('popup__close-button')) {
-    popupCommon(openedPopup, 'popup_opened');
-  };
-};
+/*ОБЩАЯ ФУНКЦИЯ ЗАКРЫТИЯ ОКНА POPUP ПО КЛИКУ*/
+/*НА КРЕСТИК commonFunctionClickCloseButton ПЕРЕНЕСЕНА В ФАЙЛ utils.js*/
 
 /*РАБОТА С ФОРМОЙ ОКНА ИЗМЕНЕНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ*/
 
@@ -141,9 +91,11 @@ function formSubmitHandler(evt) {
 
 function formAddCardSubmitHandler(evt) {
   evt.preventDefault();
-  userDataCardObject.name = addCardNameInput.value;
-  userDataCardObject.link = addCardImageLink.value;
-  addCardToContainer(userDataCardObject, UserCard);
+  const userCardData = {
+    name: addCardNameInput.value,
+    link: addCardImageLink.value
+  }
+  addCardToContainer(userCardData, '.card-template');
   popupCommon(popupAddCard, 'popup_opened');
 };
 

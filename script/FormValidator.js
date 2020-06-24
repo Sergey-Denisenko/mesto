@@ -11,30 +11,28 @@ export class FormValidator {
   constructor(optionObject, formElement) { //Принимает объект настроек и элемент формы
     this._optionObject = optionObject;
     this._formElement = formElement;
-    this._formSelector = optionObject.formSelector; // Класс формы
-    this._inputSelector = optionObject.inputSelector; // Класс инпута
-    this._submitButtonSelector = optionObject.submitButtonSelector; // Класс кнопки
-    this._inactiveButtonClass = optionObject.inactiveButtonClass; // Класс отключающий кнопку
-    this._inputErrorClass = optionObject.inputErrorClass; // Класс отрабатывающий ошибку
-    this._errorClass = optionObject.errorClass;// Класс показывающий ошибку
+    this._inputSelector = this._optionObject.inputSelector; // Класс инпута
+    this._submitButtonSelector = this._optionObject.submitButtonSelector; // Класс кнопки
+    this._inactiveButtonClass = this._optionObject.inactiveButtonClass; // Класс отключающий кнопку
+    this._inputErrorClass = this._optionObject.inputErrorClass; // Класс отрабатывающий ошибку
+    this._errorClass = this._optionObject.errorClass;// Класс показывающий ошибку
     this._submitButtonElement = this._formElement.querySelector(this._submitButtonSelector); //Поиск кнопки в форме
-    this._inputElement = this._formElement.querySelector(this._inputSelector); //Поиск элемента <Input>
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));//Список полей ввода
-  };
+  }
 
   _showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
-  };
+  }
 
   _hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
-  };
+  }
 
   _isValid(formElement, inputElement) {
     if (!inputElement.validity.valid) {
@@ -42,13 +40,13 @@ export class FormValidator {
     } else {
       this._hideInputError(formElement, inputElement);
     };
-  };
+  }
 
   _hasInvalidInput() {
     return this._inputList.some(function(inputElement) {
       return !inputElement.validity.valid;
     });
-  };
+  }
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
@@ -58,7 +56,7 @@ export class FormValidator {
       this._submitButtonElement.classList.remove(this._inactiveButtonClass);
       this._submitButtonElement.disabled = false;
     };
-  };
+  }
 
   _setEventListeners() {
     this._inputList.forEach(inputElement => {
@@ -67,22 +65,12 @@ export class FormValidator {
         this._toggleButtonState(this._inputList, this._submitButtonElement);
       });
     });
-  };
+  }
 
   enableValidation() {
-  this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault()
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
     this._setEventListeners();
-  };
-};
-
-// const formElementPopupProfile = document.querySelector('.popup-profile').querySelector(optionObject.formSelector);
-// const validatorProfile = new FormValidator(optionObject, formElementPopupProfile);
-// validatorProfile.enableValidation();
-// validatorProfile._toggleButtonState();
-
-// const formElementPopupAddCard = document.querySelector('.popup-add-card').querySelector(optionObject.formSelector);
-// const validatorAddCard = new FormValidator(optionObject, formElementPopupAddCard);
-// validatorAddCard.enableValidation();
-// validatorAddCard._toggleButtonState();
+  }
+}
