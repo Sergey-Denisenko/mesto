@@ -1,5 +1,7 @@
 import { DefaultCard, UserCard } from './Card.js';
-// import { FormValidator, } from './FormValidator.js';
+import { FormValidator, optionObject } from './FormValidator.js';
+import { initialCards } from './initial-cards.js';
+
 
 // КАРТОЧКИ ПО УМОЛЧАНИЮ ПОДКЛЮЧЕНЫ ОТДЕЛЬНЫМ ФАЙЛОМ - initial-cards.js
 
@@ -11,14 +13,12 @@ const jobInput = document.querySelector('.popup__form-about');
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup-profile');
-const popupFormSubmit = document.querySelector('.popup__form-submit');
 const popupContainer = popupProfile.querySelector('.popup__container');
 
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup-add-card');
 const addCardNameInput = document.querySelector('.popup-add-card__form-name');
 const addCardImageLink = document.querySelector('.popup-add-card__form-image-link');
-const popupAddCardFormSubmit = document.querySelector('.popup-add-card__form-submit');
 const popupAddCardContainer = popupAddCard.querySelector('.popup-add-card__container');
 
 const userDataCardObject = [
@@ -31,16 +31,16 @@ const userDataCardObject = [
 const popupImage = document.querySelector('.popup-image');
 const popupImageImage = document.querySelector('.popup-image__image');
 const popupImageTitle = document.querySelector('.popup-image__title');
-
 const cardContainer = document.querySelector('.card-container');
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
-
-
+// Добавление карточки на страницу
+// item - userDataCardObject или initialCards
+ // cardType - класс макета карточки
 function addCardToContainer(item, cardType) {
-    const card = new cardType(item, '.card-template')
-    const cardElement = card.generateCard();
-    cardContainer.prepend(cardElement);
+  const card = new cardType(item, '.card-template');
+  const cardElement = card.generateCard();
+  cardContainer.prepend(cardElement);
 }
 
 //Перебор массива в обратном порядке
@@ -48,16 +48,7 @@ const initCardsCopy = initialCards.slice();
 const initCardsRevers = initCardsCopy.reverse();
 initCardsRevers.forEach(function (cardItem) {
   addCardToContainer(cardItem, DefaultCard);
-  });
-
-
-console.log('check');
-
-
-/*ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ*/
-// function addCardToPage(card, container){
-//   container.prepend(card);
-// };
+});
 
 /*ОТКРЫТИЕ POPUP*/
 export function openPopupImage(imageName, imageLink) {
@@ -95,8 +86,6 @@ function popupCommon(item, className) {
 };
 
 function openPopupProfile() {
-  const inputList = Array.from(popupProfile.querySelectorAll('.popup__input'));
-  toggleButtonState(inputList, popupFormSubmit);
   popupCommon(popupProfile, 'popup_opened');
   nameInput.value = profileTitleName.textContent;
   jobInput.value = profileSubtitleAbout.textContent;
@@ -105,8 +94,6 @@ function openPopupProfile() {
 };
 
 function openPopupAddCard() {
-  const inputList = Array.from(popupAddCard.querySelectorAll('.popup__input'));
-  toggleButtonState(inputList, popupAddCardFormSubmit);
   addCardNameInput.value = '';
   addCardImageLink.value = '';
   popupCommon(popupAddCard, 'popup_opened');
@@ -154,14 +141,9 @@ function formSubmitHandler(evt) {
 
 function formAddCardSubmitHandler(evt) {
   evt.preventDefault();
-  // addCardToPage(cardToPage(addCardNameInput.value, addCardImageLink.value), cardContainer);
-  //cardContainer.append(addCardToContainer());
-  // addCardToContainer();
-  // cardContainer.append(addCardToContainer(new UserCard(userDataForCardObject, cardSelector)));
   userDataCardObject.name = addCardNameInput.value;
   userDataCardObject.link = addCardImageLink.value;
   addCardToContainer(userDataCardObject, UserCard);
-  console.log(userDataCardObject);
   popupCommon(popupAddCard, 'popup_opened');
 };
 
@@ -170,3 +152,13 @@ profileAddButton.addEventListener('click', openPopupAddCard);
 
 popupProfile.querySelector('.popup__form').addEventListener('submit', formSubmitHandler);
 popupAddCard.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler);
+
+const formElementPopupProfile = popupProfile.querySelector(optionObject.formSelector);
+const validatorProfile = new FormValidator(optionObject, formElementPopupProfile);
+validatorProfile.enableValidation();
+validatorProfile._toggleButtonState();
+
+const formElementPopupAddCard = popupAddCard.querySelector(optionObject.formSelector);
+const validatorAddCard = new FormValidator(optionObject, formElementPopupAddCard);
+validatorAddCard.enableValidation();
+validatorAddCard._toggleButtonState();
