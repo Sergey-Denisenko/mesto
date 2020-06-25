@@ -1,12 +1,3 @@
-export const optionObject = {
-  formSelector: '.popup__form', // Класс формы
-  inputSelector: '.popup__input', // Класс инпута
-  submitButtonSelector: '.popup__button', // Класс кнопки
-  inactiveButtonClass: 'popup__button_disabled', // Класс отключающий кнопку
-  inputErrorClass: 'popup__input_type_error', // Класс отрабатывающий ошибку
-  errorClass: 'popup__error_visible' // Класс показывающий ошибку
-};
-
 export class FormValidator {
   constructor(optionObject, formElement) { //Принимает объект настроек и элемент формы
     this._optionObject = optionObject;
@@ -48,7 +39,7 @@ export class FormValidator {
     });
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
       this._submitButtonElement.classList.add(this._inactiveButtonClass);
       this._submitButtonElement.disabled = true;
@@ -62,7 +53,7 @@ export class FormValidator {
     this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
       this._isValid(this._formElement, inputElement);
-        this._toggleButtonState(this._inputList, this._submitButtonElement);
+        this.toggleButtonState(this._inputList, this._submitButtonElement);
       });
     });
   }

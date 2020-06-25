@@ -1,7 +1,8 @@
 import { Card } from './Card.js';
-import { FormValidator, optionObject } from './FormValidator.js';
+import { FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { popupCommon } from './utils.js';
+import { optionObject } from './optionObject.js';
 
 // КАРТОЧКИ ПО УМОЛЧАНИЮ ПОДКЛЮЧЕНЫ ОТДЕЛЬНЫМ ФАЙЛОМ - initial-cards.js
 
@@ -108,9 +109,9 @@ popupAddCard.querySelector('.popup__form').addEventListener('submit', formAddCar
 const formElementPopupProfile = popupProfile.querySelector(optionObject.formSelector);
 const validatorProfile = new FormValidator(optionObject, formElementPopupProfile);
 validatorProfile.enableValidation();
-validatorProfile._toggleButtonState();
+validatorProfile.toggleButtonState();
 
 const formElementPopupAddCard = popupAddCard.querySelector(optionObject.formSelector);
 const validatorAddCard = new FormValidator(optionObject, formElementPopupAddCard);
 validatorAddCard.enableValidation();
-validatorAddCard._toggleButtonState();
+validatorAddCard.toggleButtonState();
