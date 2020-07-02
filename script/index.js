@@ -1,8 +1,10 @@
+import { Section } from './Section.js';//------NEW
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { popupCommon } from './utils.js';
 import { optionObject } from './optionObject.js';
+console.log('импорт  отработал');
 
 // КАРТОЧКИ ПО УМОЛЧАНИЮ ПОДКЛЮЧЕНЫ ОТДЕЛЬНЫМ ФАЙЛОМ - initial-cards.js
 
@@ -25,17 +27,72 @@ const popupAddCardContainer = popupAddCard.querySelector('.popup-add-card__conta
 const cardContainer = document.querySelector('.card-container');
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
-function addCardToContainer(item, cardTemlateClass) {
-  const card = new Card(item, cardTemlateClass);
-  const cardElement = card.generateCard();
-  cardContainer.prepend(cardElement);
-};
-//Перебор массива в обратном порядке
+// function addCardToContainer(item, cardTemlateClass) {
+//   const card = new Card(item, cardTemlateClass);
+//   const cardElement = card.generateCard();
+//   cardContainer.prepend(cardElement);
+// };
+// //Перебор массива в обратном порядке
+// const initCardsCopy = initialCards.slice();
+// const initCardsRevers = initCardsCopy.reverse();
+// initCardsRevers.forEach(function (cardItem) {
+//   addCardToContainer(cardItem, '.card-template');
+// });
+
 const initCardsCopy = initialCards.slice();
 const initCardsRevers = initCardsCopy.reverse();
-initCardsRevers.forEach(function (cardItem) {
-  addCardToContainer(cardItem, '.card-template');
-});
+      console.log('initCardsRevers');
+
+const cardListDefault = new Section({
+  items: initCardsRevers,
+  renderer: (item) => {
+      console.log('уно');
+    const card = new Card(item, '.card-template');
+      console.log('дуэ');
+    const cardElement = card.generateCard();
+      console.log(card);
+      console.log('это card');
+      console.log(cardElement);
+      console.log('это cardElement');
+    cardListDefault.addItem(cardElement);
+    }
+  },
+  cardContainer
+);
+      console.log(cardListDefault);
+// cardListDefault.addItem(cardListDefault.renderer);
+cardListDefault.renderItems();// отрисовка карточек
+
+// //Перебор массива в обратном порядке
+// const initCardsCopy = initialCards.slice();
+// const initCardsRevers = initCardsCopy.reverse();
+// initCardsRevers.forEach(function (cardItem) {
+//   addCardToContainer(cardItem, '.card-template');
+// });
+// function addCardToContainer(item, cardTemlateClass) {
+//   const card = new Card(item, cardTemlateClass);
+//   const cardElement = card.generateCard();
+//   cardContainer.prepend(cardElement);
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Функцию открытия попапа картинки openPopupImage перенесена файл utils.js*/
 
@@ -92,12 +149,33 @@ function formSubmitHandler(evt) {
 
 function formAddCardSubmitHandler(evt) {
   evt.preventDefault();
-  const userCardData = {
+  const userCardData = [
+    {
     name: addCardNameInput.value,
     link: addCardImageLink.value
-  }
-  addCardToContainer(userCardData, '.card-template');
+    }
+  ];
+  //addCardToContainer(userCardData, '.card-template');
   popupCommon(popupAddCard, 'popup_opened');
+
+  const cardUser = new Section({
+    items: userCardData,
+    renderer: (item) => {
+        console.log('q');
+      const card = new Card(item, '.card-template');
+        console.log('qq');
+      const cardElement = card.generateCard();
+        console.log(card);
+        console.log('это card q');
+        console.log(cardElement);
+        console.log('это cardElement q');
+      cardUser.addItem(cardElement);
+      }
+    },
+    cardContainer
+  );
+      console.log(cardUser - 'это cardUser');
+    cardUser.renderItems();
 };
 
 editButton.addEventListener('click', openPopupProfile);
