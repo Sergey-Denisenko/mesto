@@ -4,7 +4,7 @@
   "description": "____",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rm -rf dist && webpack --env.mode=production",
     "dev": "webpack-dev-server --open --watch"
   },
   "author": "Sergey Denisenko",
@@ -28,5 +28,13 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sergey-Denisenko/mesto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sergey-Denisenko/mesto/issues"
+  },
+  "homepage": "https://github.com/Sergey-Denisenko/mesto#readme"
 }
