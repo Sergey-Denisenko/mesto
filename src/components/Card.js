@@ -4,21 +4,22 @@ export class Card {
     this._title = data.name;
     this._image = data.link;
     this.handleCardClick = handleCardClick;
-    }
+  }
 
   //получаю готовую разметку перед размещением на страницу
   //Возвращаю разметку карточки через return
   _returnCardElement() {
-      const cardElement = document
-    .querySelector(this._cardSelector)
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content
+      .querySelector('.card')
+      .cloneNode(true);
+
     return cardElement;
   }
 
   _handleImageClick() {
-    this.handleCardClick(this._title, this._image)
+    this.handleCardClick(this._title, this._image);
   }
 
   _handleLikeClick() {
@@ -48,6 +49,7 @@ export class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._cardImage.src = this._image;
     this._cardImage.alt = `Картинка ${this._title}`;
+
     return this._element;
   }
 }

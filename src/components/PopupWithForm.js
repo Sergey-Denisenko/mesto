@@ -4,27 +4,33 @@ export class PopupWithForm extends Popup {
 	constructor(popupSelector, callBackSubmitForm) {
     super(popupSelector);
     this._callBackSubmitForm = callBackSubmitForm;
-    this._popupButtonSubmitForm = this._popupSelector.querySelector('.popup__button')
   }
 
-  _getInputValues() {
-    this.inputValues = this._popupSelector.querySelectorAll('.popup__input');
+  _getInputValues() { // - изменен метод
+    this._inputValues = {};
+    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
+    this._inputList.forEach(inputItem => {
+      this._inputValues[inputItem.name] = inputItem.value;
+    });
+
+    return this._inputValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupButtonSubmitForm.addEventListener('click', this._callBackSubmitForm);
+    this._popupSelector.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._callBackSubmitForm(this._getInputValues());
+      this.close();
+    });
+
     this._popupCloseButton.addEventListener('click', () => {
       this.close();
     });
   }
 
-  close() {
-    this._popupButtonSubmitForm.removeEventListener('click', this._callBackSubmitForm);
-    this._popupCloseButton.removeEventListener('click', () => {
-      this.close();
-    });
-    this._getInputValues();
-    super.close();
-  }
+  open() {//item - конкретный popup
+    super.open();
+    this._popupSelector.querySelector('.popup__form').reset();
+	}
 }

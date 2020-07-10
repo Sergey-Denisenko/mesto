@@ -38,8 +38,8 @@
       <form class="popup__container popup__form" novalidate>
         <h2 class="popup__form-title">Редактировать профиль</h2>
         <fieldset class="popup__form-profile popup__fieldset">
-          <input id="name-input" type="text" class="popup__form-name popup__input" name="name" value="Ваше имя" minlength="2" maxlength="40" autocomplete="off" required>
-          <span id="name-input-error" class="popup__error"></span>
+          <input id="name-input-profile" type="text" class="popup__form-name popup__input" name="name" value="Ваше имя" minlength="2" maxlength="40" autocomplete="off" required>
+          <span id="name-input-profile-error" class="popup__error"></span>
           <input id="prof-input" type="text" class="popup__form-about popup__input" name="prof" value="О себе" minlength="2" maxlength="200" autocomplete="off" required>
           <span id="prof-input-error" class="popup__error"></span>
           <button disabled type="submit" class="popup__form-submit popup__button popup__button_disabled">Сохранить</button>
@@ -52,8 +52,8 @@
       <form class="popup-add-card__container popup__form" novalidate>
         <h2 class="popup-add-card__form-title">Новое место</h2>
         <fieldset class="popup-add-card__form-profile popup__fieldset">
-          <input id="name-input" type="text" class="popup-add-card__form-name popup__input" name="name" placeholder="Название" value="" minlength="1" maxlength="30" autocomplete="off" required>
-          <span id="name-input-error" class="popup__error"></span>
+          <input id="name-input-add-card" type="text" class="popup-add-card__form-name popup__input" name="name" placeholder="Название" value="" minlength="1" maxlength="30" autocomplete="off" required>
+          <span id="name-input-add-card-error" class="popup__error"></span>
           <input id="link-input" type="url" class="popup-add-card__form-image-link popup__input" name="link" placeholder="Ссылка на картинку" value="" autocomplete="off" required>
           <span id="link-input-error" class="popup__error"></span>
           <button disabled type="submit" class="popup-add-card__form-submit popup__button popup__button_disabled">Создать</button>
@@ -64,7 +64,7 @@
 
     <template id="card" class="card-template">
       <div class="card">
-        <img class="card__image"  alt="">
+        <img class="card__image" alt="">
         <div class="card__info">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like"></button>
