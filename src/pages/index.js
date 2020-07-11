@@ -51,17 +51,6 @@ const userInfo = new UserInfo({ dataObject: dataUserInfo });
 /* ФУНКЦИЯ formAddCardSubmitHandler - РАБОТА С ФОРМОЙ ОКНА ДОБАВЛЕНИЯ КАРТОЧКИ И САБМИТА УПРАЗДНЕНА.
 ФУНКЦИОНАЛ САБМИТ ПЕРЕНЕСЕН В PopupWithForm */
 
-const cardUser = new Section({
-  items: [userCardData],
-  renderer: (item) => {
-    const card = new Card(item, '.card-template', handleCardClick);
-    const cardElement = card.generateCard();
-    cardUser.addItem(cardElement);
-  }
-},
-  cardContainer
-);
-
 //СОЗДАНИЕ ЭКЗЕМПЛЯРА КЛАССА PopupWithForm И ОТКРЫТИЕ ПОПАПА ПРОФИЛЯ
 const popupProfileForm = new PopupWithForm(popupProfile, dataInputFields => {
   userInfo.setUserInfo(dataInputFields);
@@ -84,7 +73,9 @@ popupProfileForm.setEventListeners();
 const popupAddCardForm = new PopupWithForm(popupAddCard, dataInputFields => {
   userCardData.name = dataInputFields.name;
   userCardData.link = dataInputFields.link;
-  cardUser.renderItems();
+  const card = new Card(userCardData, '.card-template', handleCardClick);
+  const cardElement = card.generateCard();
+  cardListDefault.addItem(cardElement);
   popupAddCardForm.close();
 });
 
