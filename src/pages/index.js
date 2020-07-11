@@ -52,7 +52,7 @@ const userInfo = new UserInfo({ dataObject: dataUserInfo });
 ФУНКЦИОНАЛ САБМИТ ПЕРЕНЕСЕН В PopupWithForm */
 
 const cardUser = new Section({
-  items: userCardData,
+  items: [userCardData],
   renderer: (item) => {
     const card = new Card(item, '.card-template', handleCardClick);
     const cardElement = card.generateCard();
@@ -82,8 +82,8 @@ popupProfileForm.setEventListeners();
 
 //СОЗДАНИЕ ЭКЗЕМПЛЯРА КЛАССА PopupWithForm И ОТКРЫТИЕ ПОПАПА ДОБАВЛЕНИЯ КАРТОЧКИ
 const popupAddCardForm = new PopupWithForm(popupAddCard, dataInputFields => {
-  userCardData[0].name = dataInputFields.name;
-  userCardData[0].link = dataInputFields.link;
+  userCardData.name = dataInputFields.name;
+  userCardData.link = dataInputFields.link;
   cardUser.renderItems();
   popupAddCardForm.close();
 });

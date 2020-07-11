@@ -10,7 +10,7 @@ export const dataUserInfo = {
   titleName: '',
   subtitleAbout: ''
 };
-export const userCardData = [{
+export const userCardData = {
   name: '',
   link: ''
-}];
+};
