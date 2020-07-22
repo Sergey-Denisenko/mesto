@@ -15,11 +15,12 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/kusto.jpg" alt="Фото в профиле">
+        <!-- <img class="profile__avatar" src="./images/kusto.jpg" alt="Фото в профиле"> -->
+        <img class="profile__avatar"  alt="Фото в профиле">
         <div class="profile__data">
           <div class="profile__info">
-            <h1 class="profile__title-name">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle-about">Исследователь океана</p>
+            <h1 class="profile__title-name">#</h1>
+            <p class="profile__subtitle-about">#</p>
           </div>
           <button type="button" class="profile__edit-button"></button>
         </div>
@@ -68,6 +69,7 @@
         <div class="card__info">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like"></button>
+          <p class="card__like-counter">0</p>
         </div>
         <button type="button" class="card__trash">
         </button>
@@ -81,7 +83,17 @@
         <h3 class="popup-image__title">#</h3>
       </div>
     </div>
-  </div>
 
+    <div class="popup-card-delete popup__overlay">
+      <form class="popup-card-delete__container" novalidate>
+        <h2 class="popup-card-delete__form-title">Вы уверены?</h2>
+        <fieldset class="popup-card-delete__form-profile">
+          <button type="submit" class="popup-card-delete__form-submit popup__button">Да</button>
+        </fieldset>
+        <button type="button" class="popup-card-delete__form-close-button popup__close-button"></button>
+      </form>
+    </div>
+
+  </div>
 </body>
 </html>

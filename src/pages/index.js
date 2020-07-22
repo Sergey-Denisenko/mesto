@@ -6,6 +6,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { initialCards } from '../utils/initial-cards.js';
 import { optionObject } from '../utils/optionObject.js';
+import { Api } from '../components/Api.js';
 import {
   nameInput,
   jobInput,
@@ -21,6 +22,86 @@ import {
 
 import '../pages/index.css';
 
+import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
+
+//-----------------------------------------------
+  // fetch('https://mesto.nomoreparties.co/v1/cohort-13/users/me', {
+  //   headers: {
+  //     authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a'
+  //   }
+  // })
+  // .then((res) => {
+  //   return res.json();
+  // })
+  // .then((data) => {
+  //     console.log(data.name); // если мы попали в этот then, data — это объект
+  //     console.log(data.about);
+  //     console.log(data.avatar);
+  //     console.log(data);
+  //     console.log(typeof data);
+  //     profileTitleNameDefault.textContent = data.name;
+  //     profileSubtitleAboutDefault.textContent = data.about;
+  //     profileAvatarDefault.src = data.avatar;
+  //     return data;
+  // })
+  // .catch((err) => {
+  //   console.log('Ошибка. Запрос не выполнен: ', err);
+  // });
+//-----------------------------------------------
+//-----------------ПОЛУЧЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ С СЕРВЕРА
+// const likeToServerApi = new Api();
+
+const profileTitleNameDefault = document.querySelector('.profile').querySelector('.profile__title-name');
+const profileSubtitleAboutDefault = document.querySelector('.profile').querySelector('.profile__subtitle-about');
+const profileAvatarDefault = document.querySelector('.profile').querySelector('.profile__avatar');
+
+const api = new Api();
+api.getUserDataDefaultFromServer()
+  .then((data) => {
+    profileTitleNameDefault.textContent = data.name;
+    profileSubtitleAboutDefault.textContent = data.about;
+    profileAvatarDefault.src = data.avatar;
+
+  console.log('data----------------');
+  console.log(data._id);
+
+const cardTo = function(dataObject) {
+  const cardListDefault = new Section({
+    items: dataObject.reverse(),
+    renderer: (item) => {
+      //const card = new Card(item, '.card-template', handleCardClick, openCardDeletePopup, dataUserInfo); //, openCardDeletePopup);
+
+      const card = new Card(
+        item,
+        '.card-template',
+        handleCardClick,
+        () => {
+        popupDeleteCard.open();
+        popupDeleteCard.setEventListeners(item._id, () => {card.deleteCard()});
+        },
+        data
+      );
+
+      const cardElement = card.generateCard();//popupDeleteCard);
+      cardListDefault.addItem(cardElement);
+      card.showTrashIcon();
+        console.log('item._id');
+        console.log(item._id);
+    }
+  },
+    cardContainer
+  );
+  cardListDefault.renderItems();// отрисовка карточек
+}
+
+//-----------------ПОЛУЧЕНИЕ МАССИВА КАРТОЧЕК С СЕРВЕРА
+
+api.getCardDefaultFromServer()
+.then((cardDefaultFromServer) => {
+  cardTo(cardDefaultFromServer);
+})
+
+
 nameInput.pattern = "[A-Za-zА-Яа-я -]{1,}";
 
 //ФУНКЦИЯ ОТКРЫТИЯ ПОПАПА С КАРТИНКОЙ ПРИ КЛИКЕ НА КАРТИНКУ
@@ -30,54 +111,57 @@ const handleCardClick = function(imageName, imageLink) {
   popupWithImage.setEventListeners();
 };
 
-const initCardsRevers = initialCards.slice().reverse();
-const cardListDefault = new Section({
-  items: initCardsRevers,
-  renderer: (item) => {
-    const card = new Card(item, '.card-template', handleCardClick);
-    const cardElement = card.generateCard();
-    cardListDefault.addItem(cardElement);
-  }
-},
-  cardContainer
-);
+console.log('1');
+ const userInfo = new UserInfo({ dataObject: dataUserInfo });
 
-cardListDefault.renderItems();// отрисовка карточек
-
-const userInfo = new UserInfo({ dataObject: dataUserInfo });
-
-/* ФУНКЦИЯ formSubmitHandler - РАБОТА С ФОРМОЙ ОКНА ОКНА ИЗМЕНЕНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ И САБМИТА УПРАЗДНЕНА.
-ФУНКЦИОНАЛ САБМИТ ПЕРЕНЕСЕН В PopupWithForm */
-/* ФУНКЦИЯ formAddCardSubmitHandler - РАБОТА С ФОРМОЙ ОКНА ДОБАВЛЕНИЯ КАРТОЧКИ И САБМИТА УПРАЗДНЕНА.
-ФУНКЦИОНАЛ САБМИТ ПЕРЕНЕСЕН В PopupWithForm */
-
+console.log('2');
 //СОЗДАНИЕ ЭКЗЕМПЛЯРА КЛАССА PopupWithForm И ОТКРЫТИЕ ПОПАПА ПРОФИЛЯ
-const popupProfileForm = new PopupWithForm(popupProfile, dataInputFields => {
-  userInfo.setUserInfo(dataInputFields);
-});
+  const popupProfileForm = new PopupWithForm(popupProfile, dataInputFields => {
+    userInfo.setUserInfo(dataInputFields);
+    api.setNewDataUser(dataInputFields);
+  });
 
-editButton.addEventListener('click', (evt) => {
-  if (evt) {
-    popupProfileForm.open();
-    userInfo.getUserInfo();
-    nameInput.value = dataUserInfo.titleName;
-    jobInput.value = dataUserInfo.subtitleAbout;
-  }
-  validatorProfile.hideError();
-  popupProfile.querySelector('.popup__button').classList.add('popup__button_disabled');
-});
+  editButton.addEventListener('click', (evt) => {
+    if (evt) {
+      popupProfileForm.open();
+      userInfo.getUserInfo();
+      nameInput.value = dataUserInfo.titleName;
+      jobInput.value = dataUserInfo.subtitleAbout;
+    }
+    validatorProfile.hideError();
+    popupProfile.querySelector('.popup__button').classList.add('popup__button_disabled');
+  });
 
-popupProfileForm.setEventListeners();
+  popupProfileForm.setEventListeners();
 
-//СОЗДАНИЕ ЭКЗЕМПЛЯРА КЛАССА PopupWithForm И ОТКРЫТИЕ ПОПАПА ДОБАВЛЕНИЯ КАРТОЧКИ
+console.log('3');
+
 const popupAddCardForm = new PopupWithForm(popupAddCard, dataInputFields => {
   userCardData.name = dataInputFields.name;
   userCardData.link = dataInputFields.link;
-  const card = new Card(userCardData, '.card-template', handleCardClick);
-  const cardElement = card.generateCard();
-  cardListDefault.addItem(cardElement);
+  userCardData.likes = '';
+    console.log('userCardData');
+    console.log(userCardData);
+
+  api.addNewCardToServer(userCardData, cardTo)
+
   popupAddCardForm.close();
 });
+
+const popupCardDeleteSelector = document.querySelector('.popup-card-delete');
+
+  const popupDeleteCard = new PopupDeleteCard(
+    popupCardDeleteSelector,
+    (id, deleteCardFromClassCard) => {
+    api.deleteCardFromServer(id)
+    .then(res => {
+      deleteCardFromClassCard();
+      console.log(res)}
+      )
+    }
+  );
+
+console.log('4');
 
 profileAddButton.addEventListener('click', (evt) => {
   if (evt) {
@@ -98,3 +182,8 @@ const formElementPopupAddCard = popupAddCard.querySelector(optionObject.formSele
 const validatorAddCard = new FormValidator(optionObject, formElementPopupAddCard);
 validatorAddCard.enableValidation();
 validatorAddCard.toggleButtonState();
+console.log('5');
+
+
+// return data;
+});
