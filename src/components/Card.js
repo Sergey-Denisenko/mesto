@@ -35,9 +35,10 @@ export class Card {
     return this._id
   }
 
-  _setEventListeners() {
+  _setEventListeners(likePlus, likeMinus) {
     this._element.querySelector('.card__like').addEventListener('click', () => {
       this._handleLikeClick();
+      this.cardLikePlusMinus(likePlus, likeMinus);
     });
 
     this._element.querySelector('.card__trash').addEventListener('click', (evt) => {
@@ -51,9 +52,9 @@ export class Card {
     });
   }
 
-  generateCard() {
+  generateCard(likePlus, likeMinus) {
     this._element = this._returnCardElement();
-    this._setEventListeners();
+    this._setEventListeners(likePlus, likeMinus);
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage = this._element.querySelector('.card__image');
     this._cardImage.src = this._image;
@@ -73,6 +74,26 @@ export class Card {
     }
   }
 
+  cardLikePlusMinus(likePlus, likeMinus) {
+    console.log('cardLikePlusMinus(likePlus, likeMinus) В ДЕЛЕ');
+    if (this._element.querySelector('.card__like').classList.contains('card__like_active-black')) {
+      likePlus();
+    } else {
+      likeMinus();
+    }
+  }
+
+  cardLikePlus() {
+    this._likes.length++
+  }
+
+  cardLikeMinus() {
+    this._likes.length--
+  }
+
+  regenLikesCounter() {
+    this._element.querySelector('.card__like-counter').textContent = this._likes.length;
+  }
 }
 
 

@@ -124,11 +124,6 @@ export class Api {
     });
   }
 
-  compareIds() {
-
-  }
-
-
   deleteCardFromServer(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
@@ -149,58 +144,43 @@ export class Api {
     });
   }
 
+  likePlus(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      if (res.ok) {
+        console.log('Всё хорошо likePlus');
+        return res.json();
+      }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+  }
 
-
-  // addCardLike() {
-  //   fetch(`${this._baseUrl}/cards/likes/`, {
-  //     method: 'POST',
-  //     headers: {
-  //     authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a',
-  //     'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       likes: likes
-  //     })
-  //   })
-  //   .then((res) => {
-  //     if (res.ok) {
-  //       return res.json();
-  //     }
-  //       return Promise.reject(`Ошибка: ${res.status}`);
-  //   })
-  //   .then((data) => {
-  //     return data;
-  //   })
-  //   .catch((err) => {
-  //     console.log('Ошибка. Запрос не выполнен: ', err);
-  //   });
-
-  //   deleteCardLike() {
-  //     fetch(`${this._baseUrl}/cards`, {
-  //       method: 'POST',
-  //       headers: {
-  //       authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a',
-  //       'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         likes: likes
-  //       })
-  //     })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //         return Promise.reject(`Ошибка: ${res.status}`);
-  //     })
-  //     .then((data) => {
-  //       return data;
-  //     })
-  //     .catch((err) => {
-  //       console.log('Ошибка. Запрос не выполнен: ', err);
-  //     });
-  // }
-
-
-
-
+  likeMinus(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      if (res.ok) {
+        console.log('Всё хорошо likeMinus');
+        return res.json();
+      }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+  }
 }

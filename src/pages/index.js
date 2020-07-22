@@ -82,11 +82,25 @@ const cardTo = function(dataObject) {
         data
       );
 
-      const cardElement = card.generateCard();//popupDeleteCard);
+      const cardElement = card.generateCard(() => {
+        api.likePlus(item._id)
+        .then(res => {
+          card.cardLikePlus();
+          card.regenLikesCounter();
+          console.log(res)}
+          )
+        },
+        () => {
+        api.likeMinus(item._id)
+        .then(res => {
+          card.cardLikeMinus();
+          card.regenLikesCounter();
+          console.log(res)}
+          )
+        }
+      );//popupDeleteCard);
       cardListDefault.addItem(cardElement);
       card.showTrashIcon();
-        console.log('item._id');
-        console.log(item._id);
     }
   },
     cardContainer
