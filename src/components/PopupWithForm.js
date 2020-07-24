@@ -1,9 +1,10 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
-	constructor(popupSelector, callBackSubmitForm) {
+	constructor(popupSelector, callBackSubmitForm, loadingStatus) {
     super(popupSelector);
     this._callBackSubmitForm = callBackSubmitForm;
+    this._loadingStatus = loadingStatus;
   }
 
   _getInputValues() { // - изменен метод
@@ -21,7 +22,8 @@ export class PopupWithForm extends Popup {
     this._popupSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._callBackSubmitForm(this._getInputValues());
-      this.close();
+      //this.close();
+      this._loadingStatus();
     });
 
     this._popupCloseButton.addEventListener('click', () => {

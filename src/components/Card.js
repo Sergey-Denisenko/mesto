@@ -75,7 +75,6 @@ export class Card {
   }
 
   cardLikePlusMinus(likePlus, likeMinus) {
-    console.log('cardLikePlusMinus(likePlus, likeMinus) В ДЕЛЕ');
     if (this._element.querySelector('.card__like').classList.contains('card__like_active-black')) {
       likePlus();
     } else {

@@ -14,3 +14,8 @@ export const userCardData = {
   name: '',
   link: ''
 };
+export const popupAvatarUpdate = document.querySelector('.popup-avatar-update');
+export const profileAvatarButton = document.querySelector('.profile__avatar-button');
+export const popupAvatarUpdateFormSubmitButton = popupAvatarUpdate.querySelector('.popup-avatar-update__form-submit');
+export const popupAddCardFormSubmit = popupAddCard.querySelector('.popup-add-card__form-submit');
+export const popupProfileFormSubmit = popupProfile.querySelector('.popup__form-submit');

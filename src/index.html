@@ -15,8 +15,9 @@
 
     <main class="content">
       <section class="profile">
-        <!-- <img class="profile__avatar" src="./images/kusto.jpg" alt="Фото в профиле"> -->
-        <img class="profile__avatar"  alt="Фото в профиле">
+        <button type="button" class="profile__avatar-button">
+            <img class="profile__avatar"  alt="Фото в профиле">
+        </button>
         <div class="profile__data">
           <div class="profile__info">
             <h1 class="profile__title-name">#</h1>
@@ -91,6 +92,18 @@
           <button type="submit" class="popup-card-delete__form-submit popup__button">Да</button>
         </fieldset>
         <button type="button" class="popup-card-delete__form-close-button popup__close-button"></button>
+      </form>
+    </div>
+
+    <div class="popup popup-avatar-update popup__overlay">
+      <form class="popup-avatar-update__container popup__form" novalidate>
+        <h2 class="popup-avatar-update__form-title">Обновить аватар</h2>
+        <fieldset class="popup-avatar-update__form-update popup__fieldset">
+          <input id="link-input_update-avatar" type="url" class="popup-avatar-update__form-image-link popup__input" name="link" placeholder="Ссылка на картинку" value="" autocomplete="off" required>
+          <span id="link-input_update-avatar-error" class="popup__error"></span>
+          <button disabled type="submit" class="popup-avatar-update__form-submit popup__button popup__button_disabled">Сохранить</button>
+        </fieldset>
+        <button type="button" class="popup-avatar-update__form-close-button popup__close-button"></button>
       </form>
     </div>
 
