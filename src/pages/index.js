@@ -21,24 +21,21 @@ import {
   profileAvatarButton,
   popupAvatarUpdateFormSubmitButton,
   popupAddCardFormSubmit,
-  popupProfileFormSubmit
+  popupProfileFormSubmit,
+  optionsApi
 } from '../utils/constants.js';
 
 import '../pages/index.css';
 
 import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
 
-const profileTitleNameDefault = document.querySelector('.profile').querySelector('.profile__title-name');
-const profileSubtitleAboutDefault = document.querySelector('.profile').querySelector('.profile__subtitle-about');
-const profileAvatarDefault = document.querySelector('.profile').querySelector('.profile__avatar');
+const userInfo = new UserInfo({ dataObject: dataUserInfo });
 
 //ПОЛУЧЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ С СЕРВЕРА
-const api = new Api();
+const api = new Api(optionsApi);
 api.getUserDataDefaultFromServer()
   .then((data) => {
-    profileTitleNameDefault.textContent = dataUserInfo.titleName = data.name;
-    profileSubtitleAboutDefault.textContent = dataUserInfo.subtitleAbout = data.about;
-    profileAvatarDefault.src = dataUserInfo.avatar = data.avatar;
+    userInfo.getUserInfoFromServer(data);
     const cardTo = function (dataObject) {
       const cardListDefault = new Section({
         items: dataObject.reverse(),
@@ -102,8 +99,6 @@ api.getUserDataDefaultFromServer()
       popupWithImage.setEventListeners();
     };
 
-    const userInfo = new UserInfo({ dataObject: dataUserInfo });
-
     //  //РАБОТА С ПОПАПОМ ПРОФИЛЯ
     const tempSubmitButtonProfileFormTextContent = popupProfileFormSubmit.textContent;
     const popupProfileForm = new PopupWithForm(
@@ -111,9 +106,7 @@ api.getUserDataDefaultFromServer()
       (inputValues) => {
         api.setNewDataUser(inputValues)
           .then((data) => {
-            dataUserInfo.titleName = data.name;
-            dataUserInfo.subtitleAbout = data.about;
-            userInfo.setUserInfo();
+            userInfo.getUserInfoFromServer(data);
             return data;
           })
           .catch((err) => {
@@ -130,8 +123,7 @@ api.getUserDataDefaultFromServer()
     editButton.addEventListener('click', (evt) => {
       if (evt) {
         popupProfileForm.open();
-        nameInput.value = dataUserInfo.titleName;
-        jobInput.value = dataUserInfo.subtitleAbout;
+        userInfo.setUserInfoToInputArea(nameInput, jobInput);
       }
       validatorProfile.hideError();
       popupProfile.querySelector('.popup__button').classList.add('popup__button_disabled');
@@ -165,8 +157,7 @@ api.getUserDataDefaultFromServer()
     const popupAvatarUpdateForm = new PopupWithForm(popupAvatarUpdate, dataInputFields => {
       api.avatarUpdate(dataInputFields.link)
         .then((data) => {
-          profileAvatarDefault.src = data.avatar;
-          dataUserInfo.avatar = data.avatar;
+          userInfo.getUserInfoFromServer(data);
         })
         .catch((err) => {
           console.log('Ошибка. Запрос не выполнен: ', err);

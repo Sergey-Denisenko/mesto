@@ -1,16 +1,15 @@
-//import { initialCards } from '../utils/initial-cards.js';
 export class Api {
-  constructor() {
-    this._baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-13';
-    this._token = 'b301150e-99e5-48e9-bfa2-35f39eea584a'
+  constructor(optionsApi) {
+    this._optionsApi = optionsApi;
+    this._baseUrl = this._optionsApi.baseUrl;
+    this._headers = this._optionsApi.headers
   }
 
   getUserDataDefaultFromServer() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._token//'b301150e-99e5-48e9-bfa2-35f39eea584a'
+      headers: this._headers
       }
-    })
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -21,10 +20,9 @@ export class Api {
 
   getCardDefaultFromServer() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._token
+      headers: this._headers
       }
-    })
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -36,10 +34,7 @@ export class Api {
   setNewDataUser(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
         about: userData.prof
@@ -56,10 +51,7 @@ export class Api {
   addNewCardToServer(userCardData) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userCardData.name,
         link: userCardData.link
@@ -76,10 +68,7 @@ export class Api {
   deleteCardFromServer(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then((res) => {
         if (res.ok) {
@@ -92,10 +81,7 @@ export class Api {
   likePlus(id) {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: 'PUT',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then((res) => {
         if (res.ok) {
@@ -108,10 +94,7 @@ export class Api {
   likeMinus(id) {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: 'b301150e-99e5-48e9-bfa2-35f39eea584a',
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
       .then((res) => {
         if (res.ok) {
@@ -124,10 +107,7 @@ export class Api {
   avatarUpdate(newAvatarLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: newAvatarLink
       })
