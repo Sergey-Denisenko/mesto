@@ -8,7 +8,8 @@ export const cardContainer = document.querySelector('.card-container');
 export const popupImage = document.querySelector('.popup-image');
 export const dataUserInfo = {
   titleName: '',
-  subtitleAbout: ''
+  subtitleAbout: '',
+  avatar: '',
 };
 export const userCardData = {
   name: '',
