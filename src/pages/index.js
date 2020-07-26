@@ -8,7 +8,7 @@ import { optionObject } from '../utils/optionObject.js';
 import { Api } from '../components/Api.js';
 import {
   nameInput,
-  jobInput,
+  //jobInput,
   editButton,
   popupProfile,
   profileAddButton,
@@ -36,6 +36,7 @@ const api = new Api(optionsApi);
 api.getUserDataDefaultFromServer()
   .then((data) => {
     userInfo.getUserInfoFromServer(data);
+    userInfo.setUserInfoToPage(dataUserInfo.titleName, dataUserInfo.subtitleAbout, dataUserInfo.avatar);
     const cardTo = function (dataObject) {
       const cardListDefault = new Section({
         items: dataObject.reverse(),
@@ -107,6 +108,7 @@ api.getUserDataDefaultFromServer()
         api.setNewDataUser(inputValues)
           .then((data) => {
             userInfo.getUserInfoFromServer(data);
+            userInfo.setUserInfoToPage(dataUserInfo.titleName, dataUserInfo.subtitleAbout, dataUserInfo.avatar);
             return data;
           })
           .catch((err) => {
@@ -123,7 +125,7 @@ api.getUserDataDefaultFromServer()
     editButton.addEventListener('click', (evt) => {
       if (evt) {
         popupProfileForm.open();
-        userInfo.setUserInfoToInputArea(nameInput, jobInput);
+        userInfo.setUserInfoToPage(dataUserInfo.titleName, dataUserInfo.subtitleAbout, dataUserInfo.avatar);
       }
       validatorProfile.hideError();
       popupProfile.querySelector('.popup__button').classList.add('popup__button_disabled');
@@ -158,6 +160,7 @@ api.getUserDataDefaultFromServer()
       api.avatarUpdate(dataInputFields.link)
         .then((data) => {
           userInfo.getUserInfoFromServer(data);
+          userInfo.setUserInfoToPage(dataUserInfo.titleName, dataUserInfo.subtitleAbout, dataUserInfo.avatar);
         })
         .catch((err) => {
           console.log('Ошибка. Запрос не выполнен: ', err);
