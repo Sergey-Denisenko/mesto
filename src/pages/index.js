@@ -74,6 +74,7 @@ api.getUserDataDefaultFromServer()
             });
           cardListDefault.addItem(cardElement);
           card.showTrashIcon();
+          card.checkMyLikes();
         }
       },
         cardContainer

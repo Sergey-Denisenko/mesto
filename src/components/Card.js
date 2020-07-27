@@ -93,6 +93,14 @@ export class Card {
   regenLikesCounter() {
     this._element.querySelector('.card__like-counter').textContent = this._likes.length;
   }
+
+  checkMyLikes() {
+    this._likes.forEach((item) => {
+      if (item._id === this._dataUserInfo._id) {
+        this._element.querySelector('.card__like').classList.add('card__like_active-black');
+      }
+    })
+  }
 }
 
 
